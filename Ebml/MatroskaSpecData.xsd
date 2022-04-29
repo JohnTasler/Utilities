@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+	xmlns="http://www.matroska.org/specdata"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
+
+	targetNamespace="http://www.matroska.org/specdata"
+	attributeFormDefault="unqualified"
+	elementFormDefault="qualified"
+	>
+	<xs:complexType name="Table">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="element" type="Element" />
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="Element" mixed="true">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:any processContents="lax" />
+		</xs:sequence>
+
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="level" type="xs:int" />
+		<xs:attribute name="id" type="HexBytes" />
+		<xs:attribute name="type" type="ValueType" />
+		<xs:attribute name="mandatory" type="xs:boolean" />
+		<xs:attribute name="multiple" type="xs:boolean" />
+		<xs:attribute name="minver" type="xs:int" />
+		<xs:attribute name="default" type="xs:string" />
+		<xs:attribute name="webm" type="xs:boolean" />
+		<xs:attribute name="cppname" type="xs:string" />
+		<xs:attribute name="range" type="xs:string" />
+		<xs:attribute name="bytesize" type="xs:int" />
+		<xs:attribute name="divx" type="xs:string" />
+		<xs:attribute name="maxver" type="xs:int" />
+		<xs:attribute name="recursive" type="xs:boolean" />
+	</xs:complexType>
+
+	<xs:simpleType name="ValueType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="master" />
+			<xs:enumeration value="integer" />
+			<xs:enumeration value="uinteger" />
+			<xs:enumeration value="float" />
+			<xs:enumeration value="string" />
+			<xs:enumeration value="utf8" />
+			<xs:enumeration value="date" />
+			<xs:enumeration value="binary" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HexBytes">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="0x([0-9a-zA-Z]{2})+" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:element name="table" type="Table" msdata:UseCurrentLocale="true" />
+</xs:schema>

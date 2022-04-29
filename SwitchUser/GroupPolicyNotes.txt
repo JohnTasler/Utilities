@@ -1,0 +1,5 @@
+Local Computer Policy\Computer Configuration\Windows Settings\Security Settings\Local Policies\Security Options
+    Accounts: Limit local account use of blank passwords to console logon only=Disabled
+    
+Local Computer Policy\Computer Configuration\Windows Settings\Security Settings\Local Policies\User Rights Assignments
+    Deny log on locally=TASLER-PC\John Tasler

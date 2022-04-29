@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A0EE317D-6175-4B2F-8AC8-FA0B1D23EDB6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tasler.IO.Ebml</RootNamespace>
+    <AssemblyName>Tasler.IO.Ebml</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ElementIdMap.cs" />
+    <Compile Include="Elements\GuidElement.cs" />
+    <Compile Include="ElementIdMapping.cs" />
+    <Compile Include="Interfaces\IElementFactory.cs" />
+    <Compile Include="Interfaces\IHaveReader.cs" />
+    <Compile Include="Interfaces\IReader.cs" />
+    <Compile Include="Interfaces\IParent.cs" />
+    <Compile Include="Elements\EbmlElement.cs" />
+    <Compile Include="EbmlReader.cs" />
+    <Compile Include="ElementFactory.cs" />
+    <Compile Include="Elements\BasicTypes\BinaryElement.cs" />
+    <Compile Include="Elements\BasicTypes\DateElement.cs" />
+    <Compile Include="Elements\BasicTypes\FloatElement.cs" />
+    <Compile Include="Elements\BasicTypes\UnicodeStringElement.cs" />
+    <Compile Include="Elements\BasicTypes\StringElement.cs" />
+    <Compile Include="Elements\BasicTypes\UnsignedIntegerElement.cs" />
+    <Compile Include="Elements\BasicTypes\MasterElement.cs" />
+    <Compile Include="Element.cs" />
+    <Compile Include="Elements\BasicTypes\SignedIntegerElement.cs" />
+    <Compile Include="Interfaces\IElement.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\StreamExtension.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
+	<Identifier Id="5ddf3b50-c9e4-48f8-821a-beceeee45b81">
+		<Name>Editor Options</Name>
+		<Author>Tasler Computing</Author>
+		<Version>0.5.1</Version>
+		<Description xml:space="preserve">Exposes several editor options that Visual Studio provides, but does not surface in its UI.</Description>
+		<Locale>1033</Locale>
+		<!--<MoreInfoUrl>http://blueonionsoftware.com</MoreInfoUrl>-->
+		<!--<License>License.txt</License>-->
+		<!--<GettingStartedGuide>http://blueonionsoftware.com/vscoloroutput.aspx</GettingStartedGuide>-->
+		<!--<Icon>crayons.jpg</Icon>-->
+		<!--<PreviewImage>preview.png</PreviewImage>-->
+		<InstalledByMsi>false</InstalledByMsi>
+		<SupportedProducts>
+			<VisualStudio Version="10.0">
+				<Edition>Ultimate</Edition>
+				<Edition>Premium</Edition>
+				<Edition>Pro</Edition>
+			</VisualStudio>
+			<VisualStudio Version="11.0">
+				<Edition>Ultimate</Edition>
+				<Edition>Premium</Edition>
+				<Edition>Pro</Edition>
+			</VisualStudio>
+			<VisualStudio Version="12.0">
+				<Edition>Ultimate</Edition>
+				<Edition>Premium</Edition>
+				<Edition>Pro</Edition>
+			</VisualStudio>
+			<VisualStudio Version="13.0">
+				<Edition>Ultimate</Edition>
+				<Edition>Premium</Edition>
+				<Edition>Pro</Edition>
+			</VisualStudio>
+		</SupportedProducts>
+		<SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+		<SystemComponent>false</SystemComponent>
+	</Identifier>
+	<References>
+		<Reference Id="Microsoft.VisualStudio.MPF" MinVersion="10.0">
+			<Name>Visual Studio MPF</Name>
+		</Reference>
+	</References>
+	<Content>
+		<VsPackage>|%CurrentProject%;PkgdefProjectOutputGroup|</VsPackage>
+		<MefComponent>|%CurrentProject%|</MefComponent>
+	</Content>
+</Vsix>
+
+<!--<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+	<Metadata>
+		<Identity Id="5ddf3b50-c9e4-48f8-821a-beceeee45b81" Version="0.5" Language="en-US" Publisher="Tasler Computing" />
+		<DisplayName>EditorOptions</DisplayName>
+		<Description>Exposes several editor options that Visual Studio provides, but does not surface in its UI.</Description>
+		<Tags>editor options regions outlining undo redo</Tags>
+	</Metadata>
+	<Installation InstalledByMsi="false">
+		<InstallationTarget Id="Microsoft.VisualStudio.Ultimate" Version="11.0" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Premium" Version="11.0" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="11.0" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Ultimate" Version="10.0" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Premium" Version="10.0" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="10.0" />
+	</Installation>
+	<Dependencies>
+		<Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="4.5" />
+		--><!--<Dependency Id="Microsoft.VisualStudio.MPF.10.0" DisplayName="Visual Studio MPF 10.0" d:Source="Installed" />--><!--
+	</Dependencies>
+	<Assets>
+		<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+	</Assets>
+</PackageManifest>-->

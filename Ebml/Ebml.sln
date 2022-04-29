@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EbmlTest", "EbmlTest\EbmlTest.csproj", "{FE870FCB-B8E1-4F51-AA76-B7F62EC578D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.IO.Ebml", "Tasler.IO.Ebml\Tasler.IO.Ebml.csproj", "{A0EE317D-6175-4B2F-8AC8-FA0B1D23EDB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.IO.Matroska", "Tasler.IO.Matroska\Tasler.IO.Matroska.csproj", "{52280EE5-3BAF-4184-9D1D-6E2863B47683}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://taz-tfs:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = EbmlTest\\EbmlTest.csproj
+		SccProjectName1 = EbmlTest
+		SccLocalPath1 = EbmlTest
+		SccProjectUniqueName2 = Tasler.IO.Ebml\\Tasler.IO.Ebml.csproj
+		SccProjectName2 = Tasler.IO.Ebml
+		SccLocalPath2 = Tasler.IO.Ebml
+		SccProjectUniqueName3 = Tasler.IO.Matroska\\Tasler.IO.Matroska.csproj
+		SccProjectName3 = Tasler.IO.Matroska
+		SccLocalPath3 = Tasler.IO.Matroska
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE870FCB-B8E1-4F51-AA76-B7F62EC578D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE870FCB-B8E1-4F51-AA76-B7F62EC578D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE870FCB-B8E1-4F51-AA76-B7F62EC578D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE870FCB-B8E1-4F51-AA76-B7F62EC578D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0EE317D-6175-4B2F-8AC8-FA0B1D23EDB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0EE317D-6175-4B2F-8AC8-FA0B1D23EDB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0EE317D-6175-4B2F-8AC8-FA0B1D23EDB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0EE317D-6175-4B2F-8AC8-FA0B1D23EDB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52280EE5-3BAF-4184-9D1D-6E2863B47683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52280EE5-3BAF-4184-9D1D-6E2863B47683}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52280EE5-3BAF-4184-9D1D-6E2863B47683}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52280EE5-3BAF-4184-9D1D-6E2863B47683}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
