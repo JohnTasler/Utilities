@@ -1,0 +1,4 @@
+BUILD_PASS2_CONSUMES= \
+    iot\shell\embedded\shell\nonunittest\messagedialogtester\messagedialogtester.dark\appx|PASS2 \
+    iot\shell\embedded\shell\nonunittest\messagedialogtester\messagedialogtester.light\appx|PASS2 \
+

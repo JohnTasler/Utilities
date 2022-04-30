@@ -1,0 +1,11 @@
+# editorconfig: http://editorconfig.org/
+# Help developers standardize spaces, tabs, encoding, end-line characters across editors
+
+# C# overrides
+# Rules explanation: https://kent-boogaart.com/blog/editorconfig-reference-for-c-developers
+[*.cs]
+# Do not avoid "this."
+dotnet_style_qualification_for_event = true:suggestion
+dotnet_style_qualification_for_field = true:suggestion
+dotnet_style_qualification_for_method = true:suggestion
+dotnet_style_qualification_for_property = true:suggestion

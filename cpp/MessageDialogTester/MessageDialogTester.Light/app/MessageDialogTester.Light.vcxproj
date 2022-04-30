@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' != 'true' AND '$(NTMAKEENV)' != ''">
+    <RazzleBuild>true</RazzleBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RazzleBuild)' != 'true'">
+    <RazzleBuild>false</RazzleBuild>
+  </PropertyGroup>
+  <!-- Razzle Dev Environment Compilation scenario -->
+  <PropertyGroup Label="DevScenario" Condition="$(RazzleBuild)">
+    <DevScenario>FirstPartyApp</DevScenario>
+    <ConsumeWinRT>true</ConsumeWinRT>
+    <UseOldXamlCompiler>false</UseOldXamlCompiler>
+    <UseUnicrt>true</UseUnicrt>
+    <UseStl>true</UseStl>
+    <StlVersion>$(StlVerCurrent)</StlVersion>
+    <StlUnicrtAllowed>true</StlUnicrtAllowed>
+    <UseModernCompliantVclibs>true</UseModernCompliantVclibs>
+  </PropertyGroup>
+  <Import Condition="$(RazzleBuild)" Project="$(NTMAKEENV)\Microsoft.Build.settings" />
+  <Import Condition="$(RazzleBuild)" Project="$(NTMAKEENV)\managed\Customizations\Razzle\Windows.Apps.Props" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup Label="ProjectConfigurations" Condition="$(RazzleBuild)">
+    <ProjectConfiguration Include="Release|arm64">
+      <Configuration>Release</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|arm64">
+      <Configuration>Debug</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{57defb13-52a2-4db6-bf02-5e8450a04a84}</ProjectGuid>
+    <ProjectName>MessageDialogTester.Light</ProjectName>
+    <RootNamespace>MessageDialogTester</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ConfigurationType>Application</ConfigurationType>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <GenerateManifest>true</GenerateManifest>
+    <TargetName>MessageDialogTester.Light</TargetName>
+    <PlatformToolset>v142</PlatformToolset>
+    <WindowsTargetPlatformVersion Condition="!$(RazzleBuild)">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion Condition="!$(RazzleBuild)">10.0.18362.0</WindowsTargetPlatformMinVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4453;4691;4702;28204</DisableSpecificWarnings>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>
+      $(ProjectDir)..\..\Shared;
+      %(AdditionalIncludeDirectories);
+      </AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>
+      %(AdditionalDependencies)
+      </AdditionalDependencies>
+      <IgnoreAllDefaultLibraries Condition="!$(RazzleBuild)">false</IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries Condition="$(RazzleBuild)">true</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Shared\MessageDialogException.xaml.h">
+      <DependentUpon>..\..\Shared\MessageDialogException.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\MessageDialogResult.xaml.h">
+      <DependentUpon>..\..\Shared\MessageDialogResult.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\pch.h" />
+    <ClInclude Include="App.xaml.h">
+      <DependentUpon>App.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\MainPage.xaml.h">
+      <DependentUpon>..\..\Shared\MainPage.xaml</DependentUpon>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="..\..\Shared\MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\Shared\MessageDialogException.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\Shared\MessageDialogResult.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="..\appx\app.appxsources" />
+    <None Include="..\appx\product.pbxproj" />
+    <None Include="..\appx\sources" />
+    <None Include="..\appx\sources.dep" />
+    <None Include="..\..\Shared\MessageDialogTester_TemporaryKey.pfx" />
+    <None Include="sources.dep" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\SplashScreen.scale-200.png" />
+    <Image Include="Assets\SplashScreen.scale-200_DeviceFamily-IoT.png" />
+    <Image Include="Assets\Square150x150Logo.scale-200.png" />
+    <Image Include="Assets\Square44x44Logo.scale-200.png" />
+    <Image Include="Assets\StoreLogo.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.xaml.cpp">
+      <DependentUpon>App.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\MainPage.xaml.cpp">
+      <DependentUpon>..\..\Shared\MainPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\MessageDialogException.xaml.cpp">
+      <DependentUpon>..\..\Shared\MessageDialogException.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\MessageDialogResult.xaml.cpp">
+      <DependentUpon>..\..\Shared\MessageDialogResult.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <!-- Binplace the binaries so post build steps in razzle pick these up correctly -->
+  <ItemGroup Condition="$(RazzleBuild)">
+    <BinplaceLinked Include="$(ObjectPath)$(ObjectDirectory)$(TargetName).exe">
+      <DestinationFolder>$(TargetName)</DestinationFolder>
+      <InProject>false</InProject>
+    </BinplaceLinked>
+    <BinplaceLinked Include="$(ObjectPath)$(ObjectDirectory)*.xbf">
+      <DestinationFolder>$(TargetName)</DestinationFolder>
+      <InProject>false</InProject>
+    </BinplaceLinked>
+  </ItemGroup>
+  <PropertyGroup Condition="$(RazzleBuild)">
+    <BinplaceFlags>-:FULLCLASS</BinplaceFlags>
+  </PropertyGroup>
+  <Import Condition="$(RazzleBuild)" Project="$(NTMAKEENV)\Microsoft.Build.UI.Xaml.Cpp.targets" />
+  <Import Condition="!$(RazzleBuild)" Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <PropertyGroup Condition="$(RazzleBuild)">
+    <TargetDestination>$(TargetName)</TargetDestination>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+  </PropertyGroup>
+</Project>

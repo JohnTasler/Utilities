@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity type="win32" name="RoGetActivationFactory.exe" version="1.0.0.1" />
+  <file name="{{dllFile}}">
+    <activatableClass
+      name="{{className}}"
+      threadingModel="{{threadingModel}}"
+      xmlns="urn:schemas-microsoft-com:winrt.v1" />
+  </file>
+</assembly>

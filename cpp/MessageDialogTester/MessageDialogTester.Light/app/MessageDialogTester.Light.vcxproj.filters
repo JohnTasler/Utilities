@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>57defb13-52a2-4db6-bf02-5e8450a04a84</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>aa2029a3-551a-4113-a88d-68be356d2f69</UniqueIdentifier>
+      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
+    </Filter>
+    <Filter Include="appx">
+      <UniqueIdentifier>{1b2d0453-3ee5-4e94-b9ca-b7db9fe329c6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="..\..\Shared\MainPage.xaml.cpp" />
+    <ClCompile Include="..\..\Shared\MessageDialogResult.xaml.cpp" />
+    <ClCompile Include="..\..\Shared\pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="..\..\Shared\MessageDialogResult.xaml.h" />
+    <ClInclude Include="..\..\Shared\pch.h" />
+    <ClInclude Include="..\..\Shared\MainPage.xaml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\SplashScreen.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square150x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44x44Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide310x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\appx\app.appxsources">
+      <Filter>appx</Filter>
+    </None>
+    <None Include="..\appx\product.pbxproj">
+      <Filter>appx</Filter>
+    </None>
+    <None Include="..\appx\sources">
+      <Filter>appx</Filter>
+    </None>
+    <None Include="..\appx\sources.dep">
+      <Filter>appx</Filter>
+    </None>
+    <None Include="sources.dep" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\..\Shared\MainPage.xaml" />
+    <Page Include="..\..\Shared\MessageDialogResult.xaml" />
+    <Page Include="..\..\Shared\MessageDialogException.xaml" />
+  </ItemGroup>
+</Project>

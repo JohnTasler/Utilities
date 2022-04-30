@@ -1,0 +1,4 @@
+DIRS=\
+    MessageDialogTester.Dark \
+    MessageDialogTester.Light \
+    TestPackage \
