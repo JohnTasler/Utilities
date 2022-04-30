@@ -14,7 +14,9 @@
 #include <tchar.h>
 
 // Standard C/C++ headers
+#include <chrono>
 #include <string>
 #include <string_view>
+#include <thread>
 #include <vector>
 

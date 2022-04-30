@@ -4,46 +4,40 @@
 
 #include "pch.h"
 #include "FileProcessor.h"
-#include "Stopwatch.h"
 #include "Syntax.h"
 
-
 /////////////////////////////////////////////////////////////////////////////
-// CReadFilesApp
-class CReadFilesApp
-	: public CFileProcessor<CReadFilesApp, false>
+// read_files_app
+class read_files_app
+	: public file_processor<read_files_app, false>
 {
 // Constants
 private:
-	static constexpr int c_cbPage = 4096;
-	static constexpr int c_defaultPageCount = 512;
-	static constexpr int c_defaultThreadCount = 1;
+	inline static constexpr int c_cbPage = 4096;
+	inline static constexpr int c_defaultPageCount = 512;
+	inline static constexpr int c_defaultThreadCount = 1;
 
 // Data Members
 private:
-	size_t m_pageCount = c_defaultPageCount;
-	size_t m_threadCount = c_defaultThreadCount;
-	size_t m_maxThreadCount = c_defaultThreadCount;
-	bool m_isPageCountSpecified = false;
-	bool m_isThreadCountSpecified = false;
-	CStopwatch m_stopwatch;
+	size_t m_pageCount{ c_defaultPageCount };
+	size_t m_maxThreadCount{ std::thread::hardware_concurrency() };
+	size_t m_threadCount{ m_maxThreadCount };
+	bool m_isPageCountSpecified{};
+	bool m_isThreadCountSpecified{};
 	std::vector<void*> m_buffers;
 
-	void* m_buffer = nullptr;
-	size_t m_bufferSectionByteCount = 0;
+	void* m_buffer{};
+	size_t m_bufferSectionByteCount{};
 
-	PCWSTR m_fileSpec = nullptr;
-	HANDLE m_hFile = nullptr;
-	int64_t volatile m_bytesRead = 0;
-	int64_t volatile m_nextFileOffset = 0;
-	int64_t volatile m_nextBufferOffset = 0;
+	std::wstring_view m_fileSpec;
+	HANDLE m_hFile{};
+	int64_t volatile m_bytesRead{};
+	int64_t volatile m_nextFileOffset{};
+	int64_t volatile m_nextBufferOffset{};
 
 // Construction / Destruction
 public:
-	CReadFilesApp()
-		: m_threadCount(m_maxThreadCount = GetMaxNumberOfThreads())
-	{
-	}
+	read_files_app() = default;
 
 // Overrides
 public:
@@ -77,7 +71,7 @@ public:
 	int ProcessSwitch(int index, PCWSTR pszSwitch, PCWSTR pszSwitchUpper)
 	{
 		// Perform default processing (to check for standard /? /HELP switches)
-		int nResult = CFileProcessorBase::ProcessSwitch(index, pszSwitch, pszSwitchUpper);
+		int nResult = file_processor_base::ProcessSwitch(index, pszSwitch, pszSwitchUpper);
 		if (nResult != 0)
 			return nResult;
 
@@ -136,30 +130,33 @@ public:
 
 		_ftprintf(this->GetFileOut(), L"Allocated buffer of size %Iu\n", bufferEntireByteCount);
 
-		int result = CFileProcessorBase::ProcessFilespecs();
+		auto startTimePoint = std::chrono::high_resolution_clock::now();
+		int result = file_processor_base::ProcessFilespecs();
+		auto elapsedTime = std::chrono::high_resolution_clock::now() - startTimePoint;
+		auto elapsedSeconds = static_cast<double>(std::chrono::duration_cast<std::chrono::seconds>(elapsedTime).count());
 
 		_ftprintf(this->GetFileOut(), L"%I64d bytes were read in %.4f seconds.\n",
-			m_bytesRead, m_stopwatch.get_ElapsedMilliseconds() / 1000.0f);
+			m_bytesRead, elapsedSeconds);
 
-		_ftprintf(this->GetFileOut(), L"    %.2f MB/Second\n",
-			(double(m_bytesRead) / (1024 * 1024)) / (m_stopwatch.get_ElapsedMilliseconds() / 1000.0f)
+		_ftprintf(this->GetFileOut(), L"    %.2f MiB/Second\n",
+			(double(m_bytesRead) / (1024 * 1024)) / elapsedSeconds
 			);
 
-		_ftprintf(this->GetFileOut(), L"    %.2f Mbps\n",
-			((double(m_bytesRead) * 8) / (1024 * 1024)) / (m_stopwatch.get_ElapsedMilliseconds() / 1000.0f)
+		_ftprintf(this->GetFileOut(), L"    %.2f Mibps\n",
+			((double(m_bytesRead) * 8) / (1024 * 1024)) / elapsedSeconds
 			);
 
 		return result;
 	}
 
-	int ProcessFilespec(int index, PCWSTR pszFilespec)
+	int ProcessFilespec(int index, std::wstring_view const& fileSpec)
 	{
 		// Save the file spec
-		m_fileSpec = pszFilespec;
+		m_fileSpec = fileSpec;
 
 		// Open the file with no caching
 		m_hFile = CreateFile(
-			pszFilespec, FILE_READ_DATA, FILE_SHARE_READ, NULL, OPEN_EXISTING,
+			fileSpec.data(), FILE_READ_DATA, FILE_SHARE_READ, NULL, OPEN_EXISTING,
 			FILE_ATTRIBUTE_NORMAL | FILE_FLAG_NO_BUFFERING | FILE_FLAG_OVERLAPPED, NULL);
 
 		if (m_hFile != INVALID_HANDLE_VALUE)
@@ -168,39 +165,32 @@ public:
 			if (!GetFileSizeEx(m_hFile, &fileSize))
 			{
 				DWORD dwLastError = GetLastError();
-				_ftprintf(this->GetFileErr(), L"Error %08X getting size of file \"%s\"\n", dwLastError, pszFilespec);
+				_ftprintf(this->GetFileErr(), L"Error %08X getting size of file \"%s\"\n", dwLastError, fileSpec.data());
 				return eSuccess;
 			}
 
-			_ftprintf(this->GetFileOut(), L"Reading %I64d bytes from file \"%s\"...", fileSize.QuadPart, pszFilespec);
+			_ftprintf(this->GetFileOut(), L"Reading %I64d bytes from file \"%s\"...", fileSize.QuadPart, fileSpec.data());
 
 			// Start negative so each thread doesn't have to subtract
 			m_nextFileOffset -= m_bufferSectionByteCount;
 			m_nextBufferOffset -= m_bufferSectionByteCount;
 
-			// Read the entire file
-			m_stopwatch.Start();
-
 			// Create and start each thread
 			std::vector<HANDLE> threadHandles(m_threadCount);
 			for (size_t threadIndex = 0; threadIndex < m_threadCount; ++threadIndex)
 			{
-				threadHandles[threadIndex] = CreateThread(NULL, 0, &CReadFilesApp::ThreadProcThunk, this, 0, nullptr);
+				threadHandles[threadIndex] = CreateThread(NULL, 0, &read_files_app::thread_proc_thunk, this, 0, nullptr);
 			}
 
 			// Wait for all of the threads to complete
 			WaitForMultipleObjects(static_cast<DWORD>(m_threadCount), threadHandles.data(), true, INFINITE);
 
-			if (m_stopwatch.get_IsRunning())
-			{
-				m_stopwatch.Stop();
-				_ftprintf(this->GetFileOut(), L"done\n");
-			}
+			_ftprintf(this->GetFileOut(), L"done\n");
 		}
 		else
 		{
 			DWORD dwLastError = GetLastError();
-			_ftprintf(this->GetFileErr(), L"Error 0x%08X opening file \"%s\"\n", dwLastError, pszFilespec);
+			_ftprintf(this->GetFileErr(), L"Error 0x%08X opening file \"%s\"\n", dwLastError, fileSpec.data());
 			return eFileError;
 		}
 
@@ -215,13 +205,13 @@ public:
 		return sysInfo.dwNumberOfProcessors;
 	}
 
-	static DWORD WINAPI ThreadProcThunk(void* context)
+	static DWORD WINAPI thread_proc_thunk(void* context)
 	{
-		reinterpret_cast<CReadFilesApp*>(context)->ThreadProc();
+		reinterpret_cast<read_files_app*>(context)->thread_proc();
 		return 0;
 	}
 
-	void ThreadProc()
+	void thread_proc()
 	{
 		auto bufferSectionByteCount = m_bufferSectionByteCount;
 		auto bufferSection = static_cast<std::uint8_t*>(m_buffer) + InterlockedAdd64(&m_nextBufferOffset, bufferSectionByteCount);
@@ -245,7 +235,7 @@ public:
 					dwLastError != ERROR_NOT_DOS_DISK)
 				{
 					_ftprintf(this->GetFileOut(), L"error\n");
-					_ftprintf(this->GetFileErr(), L"Error %08X reading file \"%s\"\n", dwLastError, m_fileSpec);
+					_ftprintf(this->GetFileErr(), L"Error %08X reading file \"%s\"\n", dwLastError, m_fileSpec.data());
 					goto cleanup;
 				}
 			}
@@ -257,7 +247,7 @@ public:
 				if (dwLastError != ERROR_HANDLE_EOF)
 				{
 					_ftprintf(this->GetFileOut(), L"error\n");
-					_ftprintf(this->GetFileErr(), L"Error %08X getting overlapped result for file \"%s\"\n", dwLastError, m_fileSpec);
+					_ftprintf(this->GetFileErr(), L"Error %08X getting overlapped result for file \"%s\"\n", dwLastError, m_fileSpec.data());
 					goto cleanup;
 				}
 				else
@@ -279,7 +269,7 @@ public:
 //
 int wmain(int argc, wchar_t* argv[])
 {
-	CReadFilesApp app;
+	read_files_app app;
 	int nResult = app.Main(argc, argv);
 	return nResult;
 }

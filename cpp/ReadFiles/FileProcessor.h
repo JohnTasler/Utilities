@@ -17,17 +17,17 @@
 /////////////////////////////////////////////////////////////////////////////
 //
 template <class Derived, bool AutoExpand = true>
-class CFileProcessor
+class file_processor
 {
 // Types
 protected:
-	using CFileProcessorBase = CFileProcessor<Derived, AutoExpand>;
+	using file_processor_base = file_processor<Derived, AutoExpand>;
 
 // Construction
 public:
-	CFileProcessor(FILE* fileOut = stdout, FILE* fileErr = stderr)
-		: m_fileOut(fileOut)
-		, m_fileErr(fileErr)
+	file_processor(FILE* fileOut = stdout, FILE* fileErr = stderr)
+		: m_fileOut(fileOut ? fileOut : stdout)
+		, m_fileErr(fileErr ? fileErr : stderr)
 	{
 	}
 
@@ -43,10 +43,10 @@ public:
 
 // Properties
 public:
-	inline FILE*  GetFileOut()      const { return m_fileOut; }
-	inline FILE*  GetFileErr()      const { return m_fileErr; }
-	inline int    GetArgCount()     const { return m_argc; }
-	inline wchar_t* GetArg(int index) const { return m_argv[index]; }
+	FILE*  GetFileOut()      const { return m_fileOut; }
+	FILE*  GetFileErr()      const { return m_fileErr; }
+	int    GetArgCount()     const { return m_argc; }
+	std::wstring_view GetArg(int index) const { return m_argv[index]; }
 
 // Operations
 public:
@@ -86,7 +86,7 @@ public:
 	int SyntaxV(PCWSTR pszMessage, va_list args)
 	{
 		// Display the specified message
-		if (pszMessage != NULL)
+		if (pszMessage != nullptr)
 		{
 			_fputtc(L'\n', stderr);
 			_vftprintf(stderr, pszMessage, args);
@@ -99,7 +99,7 @@ public:
 		// Indicate a syntax error
 		return derived().eSyntaxError;
 	}
-	int Syntax(PCWSTR pszMessage = NULL, ...)
+	int Syntax(PCWSTR pszMessage = nullptr, ...)
 	{
 		va_list args;
 		va_start(args, pszMessage);
@@ -142,7 +142,7 @@ protected:
 			wchar_t firstChar = derived().GetArg(i)[0];
 			if (firstChar == L'/' || firstChar == L'-')
 			{
-				std::wstring_view commandSwitch(derived().GetArg(i) + 1);
+				std::wstring_view commandSwitch{ derived().GetArg(i).substr(1) };
 
 				// Make an upper-case copy of the switch
 				std::wstring commandSwitchUpper(commandSwitch);
@@ -177,28 +177,28 @@ protected:
 		int nResult = derived().eSuccess;
 		for (int i = 1; i < derived().GetArgCount(); ++i)
 		{
-			TCHAR firstChar = derived().GetArg(i)[0];
+			wchar_t firstChar = derived().GetArg(i)[0];
 			if (firstChar != L'/' && firstChar != L'-')
 			{
 				// Get the filespec
-				PCWSTR szFilespec = derived().GetArg(i);
+				auto fileSpec = derived().GetArg(i);
 
 				// Expand wildcards, if specified
 				if constexpr (AutoExpand)
 				{
 					// Split the path information
-					TCHAR szDrive[_MAX_DRIVE * 2];
-					TCHAR szDir  [_MAX_DIR   * 2];
-					_tsplitpath_s(szFilespec,
-						szDrive, _countof(szDrive),
-						szDir, _countof(szDir),
-						NULL, 0, NULL, 0);
+					wchar_t drive[_MAX_DRIVE * 2];
+					wchar_t dir  [_MAX_DIR   * 2];
+					_tsplitpath_s(fileSpec.data(),
+						drive, _countof(drive),
+						dir, _countof(dir),
+						nullptr, 0, nullptr, 0);
 
 					// Find the first match, if any
 					_tfinddata_t findData = {0};
-					intptr_t findHandle = _tfindfirst(szFilespec, &findData);
+					intptr_t findHandle = _tfindfirst(fileSpec.data(), &findData);
 					if (findHandle == -1)
-						return derived().ReportFileError(szFilespec);
+						return derived().ReportFileError(fileSpec.data());
 
 					// Process matching filename and iterate
 					int find;
@@ -209,7 +209,7 @@ protected:
 						{
 							// Create the full filepath
 							TCHAR szFullPath[_MAX_PATH * 2];
-							_tmakepath_s(szFullPath, szDrive, szDir, findData.name, NULL);
+							_tmakepath_s(szFullPath, drive, dir, findData.name, nullptr);
 
 							// Process the file
 							nResult = derived().ProcessFilespec(i, szFullPath);
@@ -228,7 +228,7 @@ protected:
 				else
 				{
 					// Process the filespec without expanding it
-					nResult = derived().ProcessFilespec(i, szFilespec);
+					nResult = derived().ProcessFilespec(i, fileSpec);
 				}
 			}
 		}
@@ -236,9 +236,9 @@ protected:
 		// Return the last result
 		return nResult;
 	}
-	int ProcessFilespec(int index, PCWSTR pszFilespec)
+	int ProcessFilespec(int index, std::wstring_view const& fileSpec)
 	{
-		_ftprintf(derived().GetFileOut(), L"%d) %s\n", index, pszFilespec);
+		_ftprintf(derived().GetFileOut(), L"%d) %s\n", index, fileSpec.data());
 		return derived().eSuccess;
 	}
 
@@ -247,8 +247,8 @@ private:
 
 // Data Members
 protected:
-	FILE*  m_fileOut;
-	FILE*  m_fileErr;
+	FILE*  m_fileOut{};
+	FILE*  m_fileErr{};
 	int    m_argc{};
 	wchar_t** m_argv{};
 };
