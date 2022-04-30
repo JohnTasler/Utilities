@@ -1,0 +1,45 @@
+﻿<Application
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:taz="urn:tasler-dot-net-framework"
+
+	x:Class="RawInputExplorer.App"
+	>
+	<Application.Resources>
+			<!--<taz:MappingConverter x:Key="Converter.DeviceTypeToImageSource">
+				<taz:Mapping Key="Mouse"   ><BitmapImage UriSource="Images/mouse.ico"   /></taz:Mapping>
+				<taz:Mapping Key="Keyboard"><BitmapImage UriSource="Images/keyboard.ico"/></taz:Mapping>
+				<taz:Mapping Key="HID"     ><BitmapImage UriSource="Images/hid.ico"     /></taz:Mapping>
+			</taz:MappingConverter>
+
+			<taz:MappingConverter x:Key="Converter.DeviceTypeToString">
+				<taz:Mapping Key="Mouse"    Value="Mouse"/>
+				<taz:Mapping Key="Keyboard" Value="Keyboard"/>
+				<taz:Mapping Key="HID"      Value="Human Interface"/>
+			</taz:MappingConverter>
+
+			<taz:MappingConverter x:Key="Converter.DeviceTypeToGroupString">
+				<taz:Mapping Key="Mouse"    Value="Mice"/>
+				<taz:Mapping Key="Keyboard" Value="Keyboards"/>
+				<taz:Mapping Key="HID"      Value="Human Interfaces"/>
+			</taz:MappingConverter>-->
+
+			<taz:MappingConverter x:Key="Converter.DeviceTypeToImageSource">
+				<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Mouse}"   ><BitmapImage UriSource="Images/mouse.ico"   /></taz:Mapping>
+				<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Keyboard}"><BitmapImage UriSource="Images/keyboard.ico"/></taz:Mapping>
+				<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.HID}"     ><BitmapImage UriSource="Images/hid.ico"     /></taz:Mapping>
+			</taz:MappingConverter>
+
+			<taz:MappingConverter x:Key="Converter.DeviceTypeToString">
+				<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Mouse}"    Value="Mouse"/>
+				<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Keyboard}" Value="Keyboard"/>
+				<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.HID}"      Value="Human Interface"/>
+			</taz:MappingConverter>
+
+			<taz:MappingConverter x:Key="Converter.DeviceTypeToGroupString">
+				<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Mouse}"    Value="Mice"/>
+				<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Keyboard}" Value="Keyboards"/>
+				<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.HID}"      Value="Human Interfaces"/>
+			</taz:MappingConverter>
+	</Application.Resources>
+</Application>

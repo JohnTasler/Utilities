@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListROT", "ListROT.csproj", "{368FABE9-83BD-46CB-BBC9-20C06757FF32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Frameworks", "_Frameworks", "{3FD56F51-4E57-43F9-97EC-CCD4760F4001}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasler.NET", "Tasler.NET", "{52CF2B36-168E-4E7B-B0EE-F238BFD1AE88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.Interop", "..\..\..\Frameworks\Tasler.NET\Desktop\Interop\Tasler.Interop.csproj", "{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler", "..\..\..\Frameworks\Tasler.NET\Desktop\Core\Tasler.csproj", "{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccLocalPath0 = .
+		SccLocalPath1 = .
+		SccLocalPath2 = ..\\..\\..\\Frameworks\\Tasler.NET\Desktop\nterop
+		SccLocalPath3 = ..\\..\\..\\Frameworks\\Tasler.NET\Desktop\\Desktop\\Core
+		SccNumberOfProjects = 4
+		SccProjectName2 = ../../../Frameworks/Tasler.NET\Desktop\Interop
+		SccProjectName3 = ./../../Frameworks/Tasler.NET/Desktop/Core
+		SccProjectTopLevelParentUniqueName2 = ListROT.sln
+		SccProjectTopLevelParentUniqueName3 = ListROT.sln
+		SccProjectUniqueName1 = ListROT.csproj
+		SccProjectUniqueName2 = ..\\..\\..\\Frameworks\\Tasler.NET\Desktop\nterop\\Tasler.Interop.csproj
+		SccProjectUniqueName3 = ..\\..\\..\\Frameworks\\Tasler.NET\Desktop\\Desktop\\Core\\Tasler.csproj
+		SccTeamFoundationServer = https://taslercomputing.tfspreview.com/defaultcollection
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{368FABE9-83BD-46CB-BBC9-20C06757FF32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{368FABE9-83BD-46CB-BBC9-20C06757FF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{368FABE9-83BD-46CB-BBC9-20C06757FF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{368FABE9-83BD-46CB-BBC9-20C06757FF32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{52CF2B36-168E-4E7B-B0EE-F238BFD1AE88} = {3FD56F51-4E57-43F9-97EC-CCD4760F4001}
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8} = {52CF2B36-168E-4E7B-B0EE-F238BFD1AE88}
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D} = {52CF2B36-168E-4E7B-B0EE-F238BFD1AE88}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,123 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawInputExplorer", "RawInputExplorer.csproj", "{E35B16A7-9B68-4F3D-8AEE-39310A26FEE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frameworks", "Frameworks", "{268DBAFA-974E-4397-B4BA-DC9081A811E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasler.NET (Desktop)", "Tasler.NET (Desktop)", "{FFB4702F-DF4F-48EC-8D7A-FFDA66F5915C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.Interop", "..\..\..\Frameworks\Tasler.NET\Desktop\Interop\Tasler.Interop.csproj", "{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.Interop.Shell", "..\..\..\Frameworks\Tasler.NET\Desktop\Interop.Shell\Tasler.Interop.Shell.csproj", "{0D47AC56-9F1E-4DC0-943C-AB2D6FEF4162}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.Windows", "..\..\..\Frameworks\Tasler.NET\Desktop\Windows\Tasler.Windows.csproj", "{A3F179FE-71EC-49BE-812D-6A03C63B17FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.Windows.Input", "..\..\..\Frameworks\Tasler.NET\Desktop\Windows.Input\Tasler.Windows.Input.csproj", "{4D4B272C-D636-41A3-9726-5A442BDD0750}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.ComponentModel", "..\..\..\Frameworks\Tasler.NET\Desktop\ComponentModel\Tasler.ComponentModel.csproj", "{6D361FC4-9B16-49FE-A1EC-43E5FB257AE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.Interop.RawInput", "..\..\..\Frameworks\Tasler.NET\Desktop\Interop.RawInput\Tasler.Interop.RawInput.csproj", "{C9043097-5B4E-4330-958E-9FA9830D1ECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler", "..\..\..\Frameworks\Tasler.NET\Desktop\Core\Tasler.csproj", "{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://taslercomputing.visualstudio.com/defaultcollection
+		SccProjectUniqueName0 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Interop\\Tasler.Interop.csproj
+		SccProjectTopLevelParentUniqueName0 = RawInputExplorer.sln
+		SccProjectName0 = ../../../Frameworks/Tasler.NET/Desktop/Interop
+		SccAuxPath0 = https://taslercomputing.visualstudio.com/defaultcollection
+		SccLocalPath0 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Interop
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Interop.Shell\\Tasler.Interop.Shell.csproj
+		SccProjectTopLevelParentUniqueName1 = RawInputExplorer.sln
+		SccProjectName1 = ../../../Frameworks/Tasler.NET/Desktop/Interop.Shell
+		SccAuxPath1 = https://taslercomputing.visualstudio.com/defaultcollection
+		SccLocalPath1 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Interop.Shell
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Windows\\Tasler.Windows.csproj
+		SccProjectTopLevelParentUniqueName2 = RawInputExplorer.sln
+		SccProjectName2 = ../../../Frameworks/Tasler.NET/Desktop/Windows
+		SccAuxPath2 = https://taslercomputing.visualstudio.com/defaultcollection
+		SccLocalPath2 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Windows
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName3 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Windows.Input\\Tasler.Windows.Input.csproj
+		SccProjectTopLevelParentUniqueName3 = RawInputExplorer.sln
+		SccProjectName3 = ../../../Frameworks/Tasler.NET/Desktop/Windows.Input
+		SccAuxPath3 = https://taslercomputing.visualstudio.com/defaultcollection
+		SccLocalPath3 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Windows.Input
+		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName4 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\ComponentModel\\Tasler.ComponentModel.csproj
+		SccProjectTopLevelParentUniqueName4 = RawInputExplorer.sln
+		SccProjectName4 = ../../../Frameworks/Tasler.NET/Desktop/ComponentModel
+		SccAuxPath4 = https://taslercomputing.visualstudio.com/defaultcollection
+		SccLocalPath4 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\ComponentModel
+		SccProvider4 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName5 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Interop.RawInput\\Tasler.Interop.RawInput.csproj
+		SccProjectTopLevelParentUniqueName5 = RawInputExplorer.sln
+		SccProjectName5 = ../../../Frameworks/Tasler.NET/Desktop/Interop.RawInput
+		SccAuxPath5 = https://taslercomputing.visualstudio.com/defaultcollection
+		SccLocalPath5 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Interop.RawInput
+		SccProvider5 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName6 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Core\\Tasler.csproj
+		SccProjectTopLevelParentUniqueName6 = RawInputExplorer.sln
+		SccProjectName6 = ../../../Frameworks/Tasler.NET/Desktop/Core
+		SccAuxPath6 = https://taslercomputing.visualstudio.com/defaultcollection
+		SccLocalPath6 = ..\\..\\..\\Frameworks\\Tasler.NET\\Desktop\\Core
+		SccProvider6 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E35B16A7-9B68-4F3D-8AEE-39310A26FEE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E35B16A7-9B68-4F3D-8AEE-39310A26FEE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E35B16A7-9B68-4F3D-8AEE-39310A26FEE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E35B16A7-9B68-4F3D-8AEE-39310A26FEE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D47AC56-9F1E-4DC0-943C-AB2D6FEF4162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D47AC56-9F1E-4DC0-943C-AB2D6FEF4162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D47AC56-9F1E-4DC0-943C-AB2D6FEF4162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D47AC56-9F1E-4DC0-943C-AB2D6FEF4162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F179FE-71EC-49BE-812D-6A03C63B17FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F179FE-71EC-49BE-812D-6A03C63B17FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F179FE-71EC-49BE-812D-6A03C63B17FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F179FE-71EC-49BE-812D-6A03C63B17FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D4B272C-D636-41A3-9726-5A442BDD0750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D4B272C-D636-41A3-9726-5A442BDD0750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D4B272C-D636-41A3-9726-5A442BDD0750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D4B272C-D636-41A3-9726-5A442BDD0750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D361FC4-9B16-49FE-A1EC-43E5FB257AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D361FC4-9B16-49FE-A1EC-43E5FB257AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D361FC4-9B16-49FE-A1EC-43E5FB257AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D361FC4-9B16-49FE-A1EC-43E5FB257AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9043097-5B4E-4330-958E-9FA9830D1ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9043097-5B4E-4330-958E-9FA9830D1ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9043097-5B4E-4330-958E-9FA9830D1ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9043097-5B4E-4330-958E-9FA9830D1ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FFB4702F-DF4F-48EC-8D7A-FFDA66F5915C} = {268DBAFA-974E-4397-B4BA-DC9081A811E9}
+		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8} = {FFB4702F-DF4F-48EC-8D7A-FFDA66F5915C}
+		{0D47AC56-9F1E-4DC0-943C-AB2D6FEF4162} = {FFB4702F-DF4F-48EC-8D7A-FFDA66F5915C}
+		{A3F179FE-71EC-49BE-812D-6A03C63B17FF} = {FFB4702F-DF4F-48EC-8D7A-FFDA66F5915C}
+		{4D4B272C-D636-41A3-9726-5A442BDD0750} = {FFB4702F-DF4F-48EC-8D7A-FFDA66F5915C}
+		{6D361FC4-9B16-49FE-A1EC-43E5FB257AE5} = {FFB4702F-DF4F-48EC-8D7A-FFDA66F5915C}
+		{C9043097-5B4E-4330-958E-9FA9830D1ECD} = {FFB4702F-DF4F-48EC-8D7A-FFDA66F5915C}
+		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D} = {FFB4702F-DF4F-48EC-8D7A-FFDA66F5915C}
+	EndGlobalSection
+EndGlobal

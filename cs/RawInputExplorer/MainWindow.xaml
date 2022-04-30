@@ -1,0 +1,315 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:taz="urn:tasler-dot-net-framework"
+	xmlns:coll="clr-namespace:System.Collections;assembly=mscorlib"
+
+    x:Class="RawInputExplorer.MainWindow"
+	Title="Raw Input Explorer"
+	Width="800" Height="640"
+	>
+	<Window.Resources>
+		<taz:MappingConverter x:Key="DeviceTypeToIconConverter">
+			<taz:Mapping Key="Mouse" Value="Images/mouse.ico"/>
+			<taz:Mapping Key="Keyboard" Value="Images/keyboard.ico"/>
+			<taz:Mapping Key="HID" Value="Images/hid.ico"/>
+		</taz:MappingConverter>
+
+		<taz:MappingConverter x:Key="DeviceTypeToStringConverter">
+			<taz:Mapping Key="Mouse" Value="Mouse"/>
+			<taz:Mapping Key="Keyboard" Value="Keyboard"/>
+			<taz:Mapping Key="HID" Value="Human Interface"/>
+		</taz:MappingConverter>
+
+		<!--<taz:MappingConverter x:Key="DeviceTypeToIconConverter">
+			<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Mouse}" Value="Images/mouse.ico"/>
+			<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Keyboard}" Value="Images/keyboard.ico"/>
+			<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.HID}" Value="Images/hid.ico"/>
+		</taz:MappingConverter>
+
+		<taz:MappingConverter x:Key="DeviceTypeToStringConverter">
+			<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Mouse}" Value="Mouse"/>
+			<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.Keyboard}" Value="Keyboard"/>
+			<taz:Mapping Key="{x:Static taz:InterfaceDeviceType.HID}" Value="Human Interface"/>
+		</taz:MappingConverter>-->
+	</Window.Resources>
+
+	<Grid Margin="2">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="8" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Border
+			Grid.Column="0"
+			Margin="8,8,0,8" Padding="1"
+			SnapsToDevicePixels="True"
+			BorderBrush="Blue"
+			BorderThickness="1"
+			CornerRadius="0"
+			>
+			<ListBox
+				x:Name="deviceListBox"
+				ScrollViewer.VerticalScrollBarVisibility="Visible"
+				Grid.IsSharedSizeScope="True"
+				BorderThickness="0"
+				SelectionChanged="deviceListBox_SelectionChanged"
+				>
+				<ListBox.Resources>
+					<DataTemplate DataType="{x:Type taz:InterfaceDeviceMouse}">
+						<Expander Header="{Binding}" Content="{Binding}">
+							<Expander.HeaderTemplate>
+								<DataTemplate>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="*" />
+										</Grid.ColumnDefinitions>
+
+										<Image
+											Grid.Column="0"
+											IsHitTestVisible="False"
+											Margin="4,2" Width="16" VerticalAlignment="Center"
+											Source="images/mouse.ico"/>
+										<TextBlock
+											Grid.Column="1" Margin="4,2,16,2" VerticalAlignment="Center"
+											IsHitTestVisible="False"
+											FontWeight="Bold" Text="{Binding DisplayName}" />
+									</Grid>
+								</DataTemplate>
+							</Expander.HeaderTemplate>
+							<Expander.ContentTemplate>
+								<DataTemplate>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="16" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="label" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="value" />
+											<ColumnDefinition Width="8" />
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="6" />
+										</Grid.RowDefinitions>
+
+										<ContentControl Grid.Row="0" Grid.Column="1" Content="UsagePage  " FontWeight="Bold" />
+										<ContentControl Grid.Row="0" Grid.Column="2" Content="{Binding UsagePage}" ContentStringFormat="{}{0:X4}" />
+										<ContentControl Grid.Row="1" Grid.Column="1" Content="Usage  " FontWeight="Bold" />
+										<ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding Usage}" ContentStringFormat="{}{0:X4}" />
+										<ContentControl Grid.Row="2" Grid.Column="1" Content="Id  " FontWeight="Bold" />
+										<ContentControl Grid.Row="2" Grid.Column="2" Content="{Binding Id}" ContentStringFormat="{}{0}" />
+										<ContentControl Grid.Row="3" Grid.Column="1" Content="Buttons  " FontWeight="Bold" />
+										<ContentControl Grid.Row="3" Grid.Column="2" Content="{Binding NumberOfButtons}" ContentStringFormat="{}{0}" />
+										<ContentControl Grid.Row="4" Grid.Column="1" Content="SampleRate  " FontWeight="Bold" />
+										<ContentControl Grid.Row="4" Grid.Column="2" Content="{Binding SampleRate}" ContentStringFormat="{}{0}" />
+										<ContentControl Grid.Row="5" Grid.Column="1" Content="HorzWheel  " FontWeight="Bold" />
+										<ContentControl Grid.Row="5" Grid.Column="2" Content="{Binding HasHorizontalWheel}" ContentStringFormat="{}{0}" />
+									</Grid>
+								</DataTemplate>
+							</Expander.ContentTemplate>
+						</Expander>
+					</DataTemplate>
+
+					<DataTemplate DataType="{x:Type taz:InterfaceDeviceKeyboard}">
+						<Expander Header="{Binding}" Content="{Binding}">
+							<Expander.HeaderTemplate>
+								<DataTemplate>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="*" />
+										</Grid.ColumnDefinitions>
+
+										<Image
+											Grid.Column="0"
+											IsHitTestVisible="False"
+											Margin="4,2" Width="16" VerticalAlignment="Center"
+											Source="images/keyboard.ico"/>
+										<TextBlock
+											Grid.Column="1" Margin="4,2,16,2" VerticalAlignment="Center"
+											IsHitTestVisible="False"
+											FontWeight="Bold" Text="{Binding DisplayName}" />
+									</Grid>
+								</DataTemplate>
+							</Expander.HeaderTemplate>
+							<Expander.ContentTemplate>
+								<DataTemplate>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="16" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="label" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="value" />
+											<ColumnDefinition Width="8" />
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="6" />
+										</Grid.RowDefinitions>
+										<ContentControl Grid.Row="0" Grid.Column="1" Content="UsagePage  " FontWeight="Bold" />
+										<ContentControl Grid.Row="0" Grid.Column="2" Content="{Binding UsagePage}" ContentStringFormat="{}{0:X4}" />
+										<ContentControl Grid.Row="1" Grid.Column="1" Content="Usage  " FontWeight="Bold" />
+										<ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding Usage}" ContentStringFormat="{}{0:X4}" />
+										<ContentControl Grid.Row="2" Grid.Column="1" Content="Type  " FontWeight="Bold" />
+										<ContentControl Grid.Row="2" Grid.Column="2" Content="{Binding KeyboardType}" ContentStringFormat="{}{0:X8}" />
+										<ContentControl Grid.Row="3" Grid.Column="1" Content="Subtype  " FontWeight="Bold" />
+										<ContentControl Grid.Row="3" Grid.Column="2" Content="{Binding KeyboardSubType}" ContentStringFormat="{}{0:X8}" />
+										<ContentControl Grid.Row="4" Grid.Column="1" Content="Mode  " FontWeight="Bold" />
+										<ContentControl Grid.Row="4" Grid.Column="2" Content="{Binding KeyboardMode}" ContentStringFormat="{}{0:X8}" />
+										<ContentControl Grid.Row="5" Grid.Column="1" Content="FnKeys  " FontWeight="Bold" />
+										<ContentControl Grid.Row="5" Grid.Column="2" Content="{Binding NumberOfFunctionKeys}" ContentStringFormat="{}{0}" />
+										<ContentControl Grid.Row="6" Grid.Column="1" Content="Indicators  " FontWeight="Bold" />
+										<ContentControl Grid.Row="6" Grid.Column="2" Content="{Binding NumberOfIndicators}" ContentStringFormat="{}{0}" />
+										<ContentControl Grid.Row="7" Grid.Column="1" Content="TotalKeys  " FontWeight="Bold" />
+										<ContentControl Grid.Row="7" Grid.Column="2" Content="{Binding NumberOfKeysTotal}" ContentStringFormat="{}{0}" />
+									</Grid>
+								</DataTemplate>
+							</Expander.ContentTemplate>
+						</Expander>
+					</DataTemplate>
+
+					<DataTemplate DataType="{x:Type taz:InterfaceDeviceHuman}">
+						<Expander Header="{Binding}" Content="{Binding}">
+							<Expander.HeaderTemplate>
+								<DataTemplate>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="*" />
+										</Grid.ColumnDefinitions>
+
+										<Image
+											Grid.Column="0"
+											IsHitTestVisible="False"
+											Margin="4,2" Width="16" VerticalAlignment="Center"
+											Source="images/hid.ico"/>
+										<TextBlock
+											Grid.Column="1" Margin="4,2,16,2" VerticalAlignment="Center"
+											IsHitTestVisible="False"
+											FontWeight="Bold" Text="{Binding DisplayName}" />
+									</Grid>
+								</DataTemplate>
+							</Expander.HeaderTemplate>
+							<Expander.ContentTemplate>
+								<DataTemplate>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="16" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="label" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="value" />
+											<ColumnDefinition Width="8" />
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="6" />
+										</Grid.RowDefinitions>
+										<ContentControl Grid.Row="0" Grid.Column="1" Content="UsagePage  " FontWeight="Bold" />
+										<ContentControl Grid.Row="0" Grid.Column="2" Content="{Binding UsagePage}" ContentStringFormat="{}{0:X4}" />
+										<ContentControl Grid.Row="1" Grid.Column="1" Content="Usage  " FontWeight="Bold" />
+										<ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding Usage}" ContentStringFormat="{}{0:X4}" />
+										<ContentControl Grid.Row="2" Grid.Column="1" Content="Vendor Id  " FontWeight="Bold" />
+										<ContentControl Grid.Row="2" Grid.Column="2" Content="{Binding VendorId}" ContentStringFormat="{}{0:X8}" />
+										<ContentControl Grid.Row="3" Grid.Column="1" Content="Product Id  " FontWeight="Bold" />
+										<ContentControl Grid.Row="3" Grid.Column="2" Content="{Binding ProductId}" ContentStringFormat="{}{0:X8}" />
+										<ContentControl Grid.Row="4" Grid.Column="1" Content="Version Number  " FontWeight="Bold" />
+										<ContentControl Grid.Row="4" Grid.Column="2" Content="{Binding VersionNumber}" ContentStringFormat="{}{0:X8}" />
+									</Grid>
+								</DataTemplate>
+							</Expander.ContentTemplate>
+						</Expander>
+					</DataTemplate>
+				</ListBox.Resources>
+			</ListBox>
+		</Border>
+
+		<Grid Grid.Column="2" Grid.IsSharedSizeScope="True" Margin="0,8,8,8" >
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<Grid Grid.Row="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+
+				<ContentControl Grid.Column="0" Content="{Binding SelectedItem.DisplayName,ElementName=deviceListBox}" ContentStringFormat="{}{0}:  " FontWeight="Bold" Margin="0,0,4,4" />
+				<ContentControl Grid.Column="1" Content="{Binding SelectedItem.Name,ElementName=deviceListBox}" Margin="4,0,0,4" HorizontalAlignment="Right" />
+			</Grid>
+
+			<ListView Grid.Row="1" x:Name="messageItems">
+				<ListView.Style>
+					<Style TargetType="{x:Type ListView}">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding DeviceType}" Value="{x:Static taz:InterfaceDeviceType.Mouse}">
+								<Setter Property="View">
+									<Setter.Value>
+										<GridView>
+											<GridViewColumn Header="Flags" DisplayMemberBinding="{Binding Flags}" />
+											<GridViewColumn Header="Buttons" DisplayMemberBinding="{Binding Buttons}" />
+											<GridViewColumn Header="ButtonData" DisplayMemberBinding="{Binding ButtonData}" />
+											<GridViewColumn Header="RawButtons" DisplayMemberBinding="{Binding RawButtons}" />
+											<GridViewColumn Header="LastX" DisplayMemberBinding="{Binding LastX}" />
+											<GridViewColumn Header="LastY" DisplayMemberBinding="{Binding LastY}" />
+											<GridViewColumn Header="Extra Information" DisplayMemberBinding="{Binding ExtraInformation}" />
+										</GridView>
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+
+							<DataTrigger Binding="{Binding DeviceType}" Value="{x:Static taz:InterfaceDeviceType.Keyboard}">
+								<Setter Property="View">
+									<Setter.Value>
+										<GridView>
+											<GridViewColumn Header="Scan Code" DisplayMemberBinding="{Binding MakeCode}" />
+											<GridViewColumn Header="Scan Code Key" DisplayMemberBinding="{Binding KeyName}" />
+											<GridViewColumn Header="Flags" DisplayMemberBinding="{Binding Flags}" />
+											<GridViewColumn Header="Virtual Key" DisplayMemberBinding="{Binding VirtualKey}" />
+											<GridViewColumn Header="Key" DisplayMemberBinding="{Binding VirtualKey, Converter={x:Static taz:KeyInteropConverter.Instance}}" />
+											<GridViewColumn Header="Message" DisplayMemberBinding="{Binding Message}" />
+											<GridViewColumn Header="Extra Information" DisplayMemberBinding="{Binding ExtraInformation}" />
+										</GridView>
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+
+							<DataTrigger Binding="{Binding DeviceType}" Value="{x:Static taz:InterfaceDeviceType.HID}">
+								<Setter Property="View">
+									<Setter.Value>
+										<GridView>
+											<GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" />
+											<GridViewColumn Header="Size" DisplayMemberBinding="{Binding Size}" />
+											<GridViewColumn Header="Data" DisplayMemberBinding="{Binding FormattedBytes}" />
+										</GridView>
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+
+						</Style.Triggers>
+					</Style>
+
+				</ListView.Style>
+			</ListView>
+		</Grid>
+
+
+	</Grid>
+
+</Window>
