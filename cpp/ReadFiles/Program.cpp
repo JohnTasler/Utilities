@@ -3,13 +3,13 @@
 //
 
 #include "pch.h"
-#include "FileProcessor.h"
-#include "Syntax.h"
+#include "file_processor.h"
+#include "syntax.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // read_files_app
 class read_files_app
-	: public file_processor<read_files_app, false>
+	: public file_processor<read_files_app, true>
 {
 // Constants
 private:
@@ -41,34 +41,45 @@ public:
 
 // Overrides
 public:
-	PCWSTR GetSyntax()
+	std::wstring_view GetSyntax()
 	{
-		return c_syntaxText + 1;
+		return c_syntaxText.substr(1);
 	}
 
-	int GetSwitchValue(PCWSTR pszSwitchTest, PCWSTR pszSwitch, PCWSTR pszSwitchUpper,
+	int GetSwitchSizeValue(std::wstring_view const& switchTest, std::wstring_view const& switchString, std::wstring_view const& switchUpper,
 		size_t* pnValue, bool* pbConverted, bool* pbIsSwitch)
 	{
-		*pbConverted = false;
-		*pbIsSwitch = false;
-
-		size_t cchSwitchTest = _tcslen(pszSwitchTest);
-
-		if (0 == _tcsncmp(pszSwitchUpper, pszSwitchTest, cchSwitchTest))
+		if (pbConverted)
 		{
-			*pbIsSwitch = true;
-			*pnValue = _tcstol(pszSwitch + cchSwitchTest, NULL, 0);
+			*pbConverted = false;
+		}
+		if (pbIsSwitch)
+		{
+			*pbIsSwitch = false;
+		}
+
+		if (switchTest == switchString.substr(0, switchTest.length())
+		||  switchTest == switchUpper.substr(0, switchTest.length()))
+		{
+			if (pbIsSwitch)
+			{
+				*pbIsSwitch = true;
+			}
+			*pnValue = std::wcstoll(switchString.data() + switchTest.length(), nullptr, 0);
 
 			if ( (*pnValue == _I64_MAX) || ( (*pnValue == 0) && errno == ERANGE ) )
-				return Syntax(L"Invalid switch format or value: /%s\n", pszSwitch);
+				return Syntax(L"Invalid switch format or value: /%ls\n"sv, switchString.data());
 
-			*pbConverted = true;
+			if (pbConverted)
+			{
+				*pbConverted = true;
+			}
 		}
 
 		return eSuccess;
 	}
 
-	int ProcessSwitch(int index, PCWSTR pszSwitch, PCWSTR pszSwitchUpper)
+	int ProcessSwitch(int index, std::wstring_view const& pszSwitch, std::wstring_view const& pszSwitchUpper)
 	{
 		// Perform default processing (to check for standard /? /HELP switches)
 		int nResult = file_processor_base::ProcessSwitch(index, pszSwitch, pszSwitchUpper);
@@ -79,7 +90,7 @@ public:
 		bool isConverted;
 		bool isSwitch;
 
-		nResult = GetSwitchValue(L"P:", pszSwitch, pszSwitchUpper, &m_pageCount, &isConverted, &isSwitch);
+		nResult = GetSwitchSizeValue(L"P:"sv, pszSwitch, pszSwitchUpper, &m_pageCount, &isConverted, &isSwitch);
 		if (nResult != 0)
 			return nResult;
 		if (isSwitch)
@@ -94,7 +105,7 @@ public:
 			return eSuccess;
 		}
 
-		if (auto nResult = GetSwitchValue(L"T:", pszSwitch, pszSwitchUpper, &m_threadCount, &isConverted, &isSwitch))
+		if (auto nResult = GetSwitchSizeValue(L"T:"sv, pszSwitch, pszSwitchUpper, &m_threadCount, &isConverted, &isSwitch))
 			return nResult;
 
 		if (isSwitch)
@@ -113,51 +124,51 @@ public:
 		return Syntax(L"Invalid switch: /%s\n", pszSwitch);
 	}
 
-	int ProcessFilespecs()
+	int ProcessFileSpecs()
 	{
 		m_bufferSectionByteCount = c_cbPage * m_pageCount;
 		auto bufferEntireByteCount = m_bufferSectionByteCount * m_threadCount;
-		m_buffer = VirtualAlloc(NULL, bufferEntireByteCount, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE | PAGE_NOCACHE);
+		m_buffer = VirtualAlloc(nullptr, bufferEntireByteCount, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE | PAGE_NOCACHE);
 
-		if (m_buffer == NULL)
+		if (m_buffer == nullptr)
 		{
 			DWORD dwLastError = GetLastError();
-			_ftprintf(this->GetFileErr(),
+			fwprintf(this->GetFileErr(),
 				L"Error %08X allocating buffer of size %Iu\n",
 				dwLastError, bufferEntireByteCount);
 			return (int)dwLastError;
 		}
 
-		_ftprintf(this->GetFileOut(), L"Allocated buffer of size %Iu\n", bufferEntireByteCount);
+		fwprintf(this->GetFileOut(), L"Allocated buffer of size %Iu\n", bufferEntireByteCount);
 
 		auto startTimePoint = std::chrono::high_resolution_clock::now();
-		int result = file_processor_base::ProcessFilespecs();
+		int result = file_processor_base::ProcessFileSpecs();
 		auto elapsedTime = std::chrono::high_resolution_clock::now() - startTimePoint;
 		auto elapsedSeconds = static_cast<double>(std::chrono::duration_cast<std::chrono::seconds>(elapsedTime).count());
 
-		_ftprintf(this->GetFileOut(), L"%I64d bytes were read in %.4f seconds.\n",
+		fwprintf(this->GetFileOut(), L"%I64d bytes were read in %.4f seconds.\n",
 			m_bytesRead, elapsedSeconds);
 
-		_ftprintf(this->GetFileOut(), L"    %.2f MiB/Second\n",
+		fwprintf(this->GetFileOut(), L"    %.2f MiB/Second\n",
 			(double(m_bytesRead) / (1024 * 1024)) / elapsedSeconds
 			);
 
-		_ftprintf(this->GetFileOut(), L"    %.2f Mibps\n",
+		fwprintf(this->GetFileOut(), L"    %.2f Mibps\n",
 			((double(m_bytesRead) * 8) / (1024 * 1024)) / elapsedSeconds
 			);
 
 		return result;
 	}
 
-	int ProcessFilespec(int index, std::wstring_view const& fileSpec)
+	int ProcessFileSpec(int index, std::wstring_view const& fileSpec)
 	{
 		// Save the file spec
 		m_fileSpec = fileSpec;
 
 		// Open the file with no caching
 		m_hFile = CreateFile(
-			fileSpec.data(), FILE_READ_DATA, FILE_SHARE_READ, NULL, OPEN_EXISTING,
-			FILE_ATTRIBUTE_NORMAL | FILE_FLAG_NO_BUFFERING | FILE_FLAG_OVERLAPPED, NULL);
+			fileSpec.data(), FILE_READ_DATA, FILE_SHARE_READ, nullptr, OPEN_EXISTING,
+			FILE_ATTRIBUTE_NORMAL | FILE_FLAG_NO_BUFFERING | FILE_FLAG_OVERLAPPED, nullptr);
 
 		if (m_hFile != INVALID_HANDLE_VALUE)
 		{
@@ -179,7 +190,7 @@ public:
 			std::vector<HANDLE> threadHandles(m_threadCount);
 			for (size_t threadIndex = 0; threadIndex < m_threadCount; ++threadIndex)
 			{
-				threadHandles[threadIndex] = CreateThread(NULL, 0, &read_files_app::thread_proc_thunk, this, 0, nullptr);
+				threadHandles[threadIndex] = CreateThread(nullptr, 0, &read_files_app::thread_proc_thunk, this, 0, nullptr);
 			}
 
 			// Wait for all of the threads to complete
@@ -196,13 +207,6 @@ public:
 
 		// Indicate success
 		return eSuccess;
-	}
-
-	static DWORD GetMaxNumberOfThreads()
-	{
-		SYSTEM_INFO sysInfo;
-		GetSystemInfo(&sysInfo);
-		return sysInfo.dwNumberOfProcessors;
 	}
 
 	static DWORD WINAPI thread_proc_thunk(void* context)
@@ -227,7 +231,7 @@ public:
 			overlapped.hEvent = hEvent;
 
 			uint32_t dwLastError = 0;
-			if (!ReadFile(m_hFile, bufferSection, static_cast<DWORD>(bufferSectionByteCount), NULL, &overlapped))
+			if (!ReadFile(m_hFile, bufferSection, static_cast<DWORD>(bufferSectionByteCount), nullptr, &overlapped))
 			{
 				dwLastError = GetLastError();
 				if (dwLastError != ERROR_IO_PENDING &&
@@ -263,7 +267,6 @@ public:
 		(void)CloseHandle(hEvent);
 	}
 };
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
