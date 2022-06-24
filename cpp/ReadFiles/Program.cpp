@@ -65,9 +65,17 @@ public:
 			{
 				*pbIsSwitch = true;
 			}
-			*pnValue = std::wcstoll(switchString.data() + switchTest.length(), nullptr, 0);
 
-			if ( (*pnValue == _I64_MAX) || ( (*pnValue == 0) && errno == ERANGE ) )
+			if constexpr (sizeof(size_t) == sizeof(uint64_t))
+			{
+				*pnValue = static_cast<size_t>(std::wcstoll(switchString.data() + switchTest.length(), nullptr, 0));
+			}
+			else
+			{
+				*pnValue = static_cast<size_t>(std::wcstol(switchString.data() + switchTest.length(), nullptr, 0));
+			}
+
+			if ( (static_cast<int64_t>(*pnValue) == _I64_MAX) || ( (*pnValue == 0) && errno == ERANGE ) )
 				return Syntax(L"Invalid switch format or value: /%ls\n"sv, switchString.data());
 
 			if (pbConverted)
@@ -121,7 +129,7 @@ public:
 		}
 
 		// Switch is unrecognized
-		return Syntax(L"Invalid switch: /%s\n", pszSwitch);
+		return Syntax(L"Invalid switch: /%ls\n", pszSwitch);
 	}
 
 	int ProcessFileSpecs()
@@ -176,11 +184,11 @@ public:
 			if (!GetFileSizeEx(m_hFile, &fileSize))
 			{
 				DWORD dwLastError = GetLastError();
-				_ftprintf(this->GetFileErr(), L"Error %08X getting size of file \"%s\"\n", dwLastError, fileSpec.data());
+				fwprintf(this->GetFileErr(), L"Error %08X getting size of file \"%ls\"\n", dwLastError, fileSpec.data());
 				return eSuccess;
 			}
 
-			_ftprintf(this->GetFileOut(), L"Reading %I64d bytes from file \"%s\"...", fileSize.QuadPart, fileSpec.data());
+			fwprintf(this->GetFileOut(), L"Reading %I64d bytes from file \"%ls\"...", fileSize.QuadPart, fileSpec.data());
 
 			// Start negative so each thread doesn't have to subtract
 			m_nextFileOffset -= m_bufferSectionByteCount;
@@ -196,12 +204,12 @@ public:
 			// Wait for all of the threads to complete
 			WaitForMultipleObjects(static_cast<DWORD>(m_threadCount), threadHandles.data(), true, INFINITE);
 
-			_ftprintf(this->GetFileOut(), L"done\n");
+			fwprintf(this->GetFileOut(), L"done\n");
 		}
 		else
 		{
 			DWORD dwLastError = GetLastError();
-			_ftprintf(this->GetFileErr(), L"Error 0x%08X opening file \"%s\"\n", dwLastError, fileSpec.data());
+			fwprintf(this->GetFileErr(), L"Error 0x%08X opening file \"%s\"\n", dwLastError, fileSpec.data());
 			return eFileError;
 		}
 
@@ -238,8 +246,8 @@ public:
 					dwLastError != ERROR_HANDLE_EOF &&
 					dwLastError != ERROR_NOT_DOS_DISK)
 				{
-					_ftprintf(this->GetFileOut(), L"error\n");
-					_ftprintf(this->GetFileErr(), L"Error %08X reading file \"%s\"\n", dwLastError, m_fileSpec.data());
+					fwprintf(this->GetFileOut(), L"error\n");
+					fwprintf(this->GetFileErr(), L"Error %08X reading file \"%ls\"\n", dwLastError, m_fileSpec.data());
 					goto cleanup;
 				}
 			}
@@ -250,8 +258,8 @@ public:
 				uint32_t dwLastError = GetLastError();
 				if (dwLastError != ERROR_HANDLE_EOF)
 				{
-					_ftprintf(this->GetFileOut(), L"error\n");
-					_ftprintf(this->GetFileErr(), L"Error %08X getting overlapped result for file \"%s\"\n", dwLastError, m_fileSpec.data());
+					fwprintf(this->GetFileOut(), L"error\n");
+					fwprintf(this->GetFileErr(), L"Error %08X getting overlapped result for file \"%ls\"\n", dwLastError, m_fileSpec.data());
 					goto cleanup;
 				}
 				else

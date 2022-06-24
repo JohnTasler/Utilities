@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <tchar.h>
 
-// Standard C/C++ headers
+// Standard C++ headers
 #include <chrono>
 #include <experimental/generator>
 #include <filesystem>
