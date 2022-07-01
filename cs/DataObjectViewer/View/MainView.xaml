@@ -11,7 +11,7 @@
 	TextOptions.TextFormattingMode="Display" UseLayoutRounding="True"
 	FocusManager.FocusedElement="{Binding ElementName=dataObjectsListBox}"
 	Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
-	
+
 	Title="Data Object Viewer"
 	Width="732" Height="432"
 	MinWidth="544" MinHeight="340"
@@ -36,7 +36,7 @@
 				Content="_Data Objects:"
 				Target="{Binding ElementName=dataObjectsListBox}"
 				/>
-			
+
 			<ListBox
 				x:Name="dataObjectsListBox"
 				Grid.Row="1"
@@ -45,7 +45,7 @@
 				ItemsSource="{Binding DataObjects}"
 				DisplayMemberPath="Name"
 				>
-				
+
 			</ListBox>
 		</Grid>
 
@@ -63,7 +63,7 @@
 				Content="Data _Formats:"
 				Target="{Binding ElementName=formatsListView}"
 				/>
-		
+
 			<ListView
 				x:Name="formatsListView"
 				Grid.Row="1"
@@ -80,7 +80,7 @@
 							<GridViewColumn Header="Index" Width="Auto" DisplayMemberBinding="{Binding Index}"/>
 							<GridViewColumn Header="Target Device" Width="Auto" DisplayMemberBinding="{Binding TargetDevice}"/>
 						</GridView.Columns>
-					
+
 						<GridView.ColumnHeaderContainerStyle>
 							<Style TargetType="GridViewColumnHeader">
 								<Setter Property="HorizontalContentAlignment" Value="Left"/>
