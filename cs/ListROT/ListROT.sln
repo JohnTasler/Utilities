@@ -1,33 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListROT", "ListROT.csproj", "{368FABE9-83BD-46CB-BBC9-20C06757FF32}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Frameworks", "_Frameworks", "{3FD56F51-4E57-43F9-97EC-CCD4760F4001}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasler.NET", "Tasler.NET", "{52CF2B36-168E-4E7B-B0EE-F238BFD1AE88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.Interop", "..\..\..\tasler-dotnet\Source\Tasler.Interop\Tasler.Interop.csproj", "{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.Interop", "..\..\..\Frameworks\Tasler.NET\Desktop\Interop\Tasler.Interop.csproj", "{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasler.ComponentModel", "..\..\..\tasler-dotnet\Source\Tasler.ComponentModel\Tasler.ComponentModel.csproj", "{F59FFD59-176D-4D95-852F-AC70CF3FF57D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler", "..\..\..\Frameworks\Tasler.NET\Desktop\Core\Tasler.csproj", "{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasler.Core", "..\..\..\tasler-dotnet\Source\Tasler.Core\Tasler.Core.csproj", "{19153BA5-C727-41ED-8013-859EA55A1E2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasler.AssemblyInfo", "..\..\..\tasler-dotnet\Source\Tasler.AssemblyInfo\Tasler.AssemblyInfo.csproj", "{8C61CB5A-D566-46EB-BC87-8E733E3FCE7B}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Tasler.AssemblyInfo.Shared", "..\..\..\tasler-dotnet\Source\Tasler.AssemblyInfo\Tasler.AssemblyInfo.Shared.shproj", "{E87C4D32-1BF6-420A-AA63-BEBAAB7928C2}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccLocalPath0 = .
-		SccLocalPath1 = .
-		SccLocalPath2 = ..\\..\\..\\Frameworks\\Tasler.NET\Desktop\nterop
-		SccLocalPath3 = ..\\..\\..\\Frameworks\\Tasler.NET\Desktop\\Desktop\\Core
-		SccNumberOfProjects = 4
-		SccProjectName2 = ../../../Frameworks/Tasler.NET\Desktop\Interop
-		SccProjectName3 = ./../../Frameworks/Tasler.NET/Desktop/Core
-		SccProjectTopLevelParentUniqueName2 = ListROT.sln
-		SccProjectTopLevelParentUniqueName3 = ListROT.sln
-		SccProjectUniqueName1 = ListROT.csproj
-		SccProjectUniqueName2 = ..\\..\\..\\Frameworks\\Tasler.NET\Desktop\nterop\\Tasler.Interop.csproj
-		SccProjectUniqueName3 = ..\\..\\..\\Frameworks\\Tasler.NET\Desktop\\Desktop\\Core\\Tasler.csproj
-		SccTeamFoundationServer = https://taslercomputing.tfspreview.com/defaultcollection
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -37,21 +27,40 @@ Global
 		{368FABE9-83BD-46CB-BBC9-20C06757FF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{368FABE9-83BD-46CB-BBC9-20C06757FF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{368FABE9-83BD-46CB-BBC9-20C06757FF32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F59FFD59-176D-4D95-852F-AC70CF3FF57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F59FFD59-176D-4D95-852F-AC70CF3FF57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F59FFD59-176D-4D95-852F-AC70CF3FF57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F59FFD59-176D-4D95-852F-AC70CF3FF57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19153BA5-C727-41ED-8013-859EA55A1E2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19153BA5-C727-41ED-8013-859EA55A1E2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19153BA5-C727-41ED-8013-859EA55A1E2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19153BA5-C727-41ED-8013-859EA55A1E2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C61CB5A-D566-46EB-BC87-8E733E3FCE7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C61CB5A-D566-46EB-BC87-8E733E3FCE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C61CB5A-D566-46EB-BC87-8E733E3FCE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C61CB5A-D566-46EB-BC87-8E733E3FCE7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{52CF2B36-168E-4E7B-B0EE-F238BFD1AE88} = {3FD56F51-4E57-43F9-97EC-CCD4760F4001}
-		{72A1D37C-858C-4F7B-8A82-0967CDC59CC8} = {52CF2B36-168E-4E7B-B0EE-F238BFD1AE88}
-		{72B711E5-3216-4AC3-A9C0-C2C7EDB2194D} = {52CF2B36-168E-4E7B-B0EE-F238BFD1AE88}
+		{CA6287D9-6F8B-4F6D-8D44-D8359A43D644} = {3FD56F51-4E57-43F9-97EC-CCD4760F4001}
+		{F59FFD59-176D-4D95-852F-AC70CF3FF57D} = {3FD56F51-4E57-43F9-97EC-CCD4760F4001}
+		{19153BA5-C727-41ED-8013-859EA55A1E2E} = {3FD56F51-4E57-43F9-97EC-CCD4760F4001}
+		{8C61CB5A-D566-46EB-BC87-8E733E3FCE7B} = {3FD56F51-4E57-43F9-97EC-CCD4760F4001}
+		{E87C4D32-1BF6-420A-AA63-BEBAAB7928C2} = {3FD56F51-4E57-43F9-97EC-CCD4760F4001}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4619812E-2867-4C4A-9A53-B43FCC00FF53}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\..\tasler-dotnet\Source\Tasler.AssemblyInfo\Tasler.AssemblyInfo.Shared.projitems*{19153ba5-c727-41ed-8013-859ea55a1e2e}*SharedItemsImports = 5
+		..\..\..\tasler-dotnet\Source\Tasler.AssemblyInfo\Tasler.AssemblyInfo.Shared.projitems*{ca6287d9-6f8b-4f6d-8d44-d8359a43d644}*SharedItemsImports = 4
+		..\..\..\tasler-dotnet\Source\Tasler.AssemblyInfo\Tasler.AssemblyInfo.Shared.projitems*{e87c4d32-1bf6-420a-aa63-bebaab7928c2}*SharedItemsImports = 13
+		..\..\..\tasler-dotnet\Source\Tasler.AssemblyInfo\Tasler.AssemblyInfo.Shared.projitems*{f59ffd59-176d-4d95-852f-ac70cf3ff57d}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
