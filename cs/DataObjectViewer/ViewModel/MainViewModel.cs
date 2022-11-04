@@ -10,7 +10,7 @@
 	public class MainViewModel : ObservableObject
 	{
 		#region Instance Fields
-		private ObservableCollection<DataObjectViewModel> dataObjectsList;
+		private ObservableCollection<DataObjectViewModel> _dataObjectsList;
 		#endregion Instance Fields
 
 		#region Constructors
@@ -20,11 +20,11 @@
 		public MainViewModel()
 		{
 			// Create the list of data objects and collection view around it
-			this.dataObjectsList = new ObservableCollection<DataObjectViewModel>()
+			_dataObjectsList = new ObservableCollection<DataObjectViewModel>()
 			{
 				new DataObjectViewModel(this, Clipboard.GetDataObject()) { Name = "Clipboard" }
 			};
-			this.dataObjects = new ListCollectionView(this.dataObjectsList);
+			this.dataObjects = new ListCollectionView(_dataObjectsList);
 		}
 		#endregion Constructors
 
@@ -66,14 +66,14 @@
 
 		private void AddDataObjectCommandExecute(DataObject dataObject)
 		{
-			var index = this.dataObjectsList.Count + 1;
+			var index = _dataObjectsList.Count + 1;
 			var nameBase = "Dropped Data Object";
 			string name;
 			do { name = nameBase + " " + index++; }
-			while (this.dataObjectsList.Any(d => d.Name.Equals(name)));
+			while (_dataObjectsList.Any(d => d.Name.Equals(name)));
 
 			var vm = new DataObjectViewModel(this, dataObject) { Name = name };
-			this.dataObjectsList.Add(vm);
+			_dataObjectsList.Add(vm);
 		}
 
 		#endregion AddDataObjectCommand

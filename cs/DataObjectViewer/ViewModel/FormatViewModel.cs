@@ -27,7 +27,7 @@
 		{
 			get
 			{
-				if (this.formatName == null)
+				if (_formatName == null)
 				{
 					var name = string.Empty;
 					var value = (short)this.Model.cfFormat;
@@ -57,38 +57,38 @@
 						}
 					}
 
-					this.formatName = name;
+					_formatName = name;
 				}
 
-				return this.formatName;
+				return _formatName;
 			}
 		}
-		private string formatName;
+		private string _formatName;
 
 		public string TargetDevice
 		{
 			get
 			{
-				if (this.targetDevice == null)
+				if (_targetDevice == null)
 				{
 					var value = string.Empty;
 
 					if (this.Model.ptd != IntPtr.Zero)
 						value = "0x" + this.Model.ptd.ToString(IntPtr.Size == 4 ? "X8" : "X16");
 
-					this.targetDevice = value;
+					_targetDevice = value;
 				}
 
-				return this.targetDevice;
+				return _targetDevice;
 			}
 		}
-		private string targetDevice;
+		private string _targetDevice;
 
 		public string Aspect
 		{
 			get
 			{
-				if (this.aspect == null)
+				if (_aspect == null)
 				{
 					var value = this.Model.dwAspect;
 					var names = new List<string>(4);
@@ -102,13 +102,13 @@
 					if (value.HasFlag(DVASPECT.DVASPECT_DOCPRINT))
 						names.Add("DocPrint");
 
-					this.aspect = string.Join(", ", names);
+					_aspect = string.Join(", ", names);
 				}
 
-				return this.aspect;
+				return _aspect;
 			}
 		}
-		public string aspect;
+		private string _aspect;
 
 		public int? Index
 		{
@@ -124,7 +124,7 @@
 		{
 			get
 			{
-				if (this.mediumType == null)
+				if (_mediumType == null)
 				{
 					var value = this.Model.tymed;
 					var names = new List<string>(8);
@@ -151,19 +151,19 @@
 							names.Add("Enhanced Metafile");
 					}
 
-					this.mediumType = string.Join(", ", names);
+					_mediumType = string.Join(", ", names);
 				}
 
-				return this.mediumType;
+				return _mediumType;
 			}
 		}
-		private string mediumType;
+		private string _mediumType;
 	}
 
 	public enum ClipboardFormat : short
 	{
 		/// <summary>CF_TEXT</summary>
-		TEXT            = 1, 
+		TEXT            = 1,
 
 		/// <summary>CF_BITMAP</summary>
 		BITMAP          = 2,

@@ -8,6 +8,8 @@
 
 	public class DataObjectViewModel : ParentedObservableObject<MainViewModel>
 	{
+		private const int c_enumerationBlockSize = 16;
+
 		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DataObjectViewModel"/> class.
@@ -45,7 +47,7 @@
 		{
 			var dataObject = this.Model as System.Runtime.InteropServices.ComTypes.IDataObject;
 			var enumFormatEtc = dataObject.EnumFormatEtc(DATADIR.DATADIR_GET);
-			return enumFormatEtc.AsEnumerable(4).Select(f => new FormatViewModel(this, f));
+			return enumFormatEtc.AsEnumerable(c_enumerationBlockSize).Select(f => new FormatViewModel(this, f));
 		}
 		#endregion Private Implementation
 	}
