@@ -1,16 +1,14 @@
 ﻿namespace DataObjectViewer.ViewModel
 {
 	using System.Collections.Generic;
+	using System.ComponentModel;
 	using System.Linq;
 	using System.Runtime.InteropServices.ComTypes;
 	using Tasler.ComponentModel;
-	using DataObjectViewer.Utility;
-	using System.ComponentModel;
+	using Tasler.Interop.Com;
 
 	public class DataObjectViewModel : Child<MainViewModel>, INotifyPropertyChanged, IModelContainer<System.Windows.IDataObject>
 	{
-		private const int c_enumerationBlockSize = 16;
-
 		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DataObjectViewModel"/> class.
@@ -43,16 +41,16 @@
 		{
 			get { return this.GetFormats(); }
 		}
-		//private IEnumerable<FormatViewModel> formats;
 
 		#endregion Properties
 
 		#region Private Implementation
 		private IEnumerable<FormatViewModel> GetFormats()
 		{
-			var dataObject = this.Model as System.Runtime.InteropServices.ComTypes.IDataObject;
+			var dataObject = this.Model as IDataObject;
 			var enumFormatEtc = dataObject.EnumFormatEtc(DATADIR.DATADIR_GET);
-			return enumFormatEtc.AsEnumerable(c_enumerationBlockSize).Select(f => new FormatViewModel(this, f));
+			return enumFormatEtc.AsEnumerable<IEnumFORMATETC, FORMATETC>(ComEnumExtensions.FetchFORMATETC)
+				.Select(f => new FormatViewModel(this, f));
 		}
 		#endregion Private Implementation
 	}

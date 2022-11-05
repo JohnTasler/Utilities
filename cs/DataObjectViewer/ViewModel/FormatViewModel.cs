@@ -2,12 +2,10 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.ComponentModel;
-	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
-	using System.Text;
 	using DataObjectViewer.Properties;
 	using Tasler.ComponentModel;
+	using Tasler.Interop.User;
 
 	public class FormatViewModel : Child<DataObjectViewModel>, IModelContainer<FORMATETC>
 	{
@@ -159,105 +157,5 @@
 			}
 		}
 		private string _mediumType;
-	}
-
-	public enum ClipboardFormat : short
-	{
-		/// <summary>CF_TEXT</summary>
-		TEXT            = 1,
-
-		/// <summary>CF_BITMAP</summary>
-		BITMAP          = 2,
-
-		/// <summary>CF_METAFILEPICT</summary>
-		METAFILEPICT    = 3,
-
-		/// <summary>CF_SYLK</summary>
-		SYLK            = 4,
-
-		/// <summary>CF_DIF</summary>
-		DIF             = 5,
-
-		/// <summary>CF_TIFF</summary>
-		TIFF            = 6,
-
-		/// <summary>CF_OEMTEXT</summary>
-		OEMTEXT         = 7,
-
-		/// <summary>CF_DIB</summary>
-		DIB             = 8,
-
-		/// <summary>CF_PALETTE</summary>
-		PALETTE         = 9,
-
-		/// <summary>CF_PENDATA</summary>
-		PENDATA         = 10,
-
-		/// <summary>CF_RIFF</summary>
-		RIFF            = 11,
-
-		/// <summary>CF_WAVE</summary>
-		WAVE            = 12,
-
-		/// <summary>CF_UNICODETEXT</summary>
-		UNICODETEXT     = 13,
-
-		/// <summary>CF_ENHMETAFILE</summary>
-		ENHMETAFILE     = 14,
-
-		/// <summary>CF_HDROP</summary>
-		HDROP           = 15,
-
-		/// <summary>CF_LOCALE</summary>
-		LOCALE          = 16,
-
-		/// <summary>CF_DIBV5</summary>
-		DIBV5           = 17,
-
-		/// <summary>CF_OWNERDISPLAY</summary>
-		OWNERDISPLAY    = 0x0080,
-
-		/// <summary>CF_DSPTEXT</summary>
-		DSPTEXT         = 0x0081,
-
-		/// <summary>CF_DSPBITMAP</summary>
-		DSPBITMAP       = 0x0082,
-
-		/// <summary>CF_DSPMETAFILEPICT</summary>
-		DSPMETAFILEPICT = 0x0083,
-
-		/// <summary>CF_DSPENHMETAFILE</summary>
-		DSPENHMETAFILE  = 0x008E,
-
-		/// <summary>CF_PRIVATEFIRST</summary>
-		PRIVATEFIRST    = 0x0200,
-
-		/// <summary>CF_PRIVATELAST</summary>
-		PRIVATELAST     = 0x02FF,
-
-		/// <summary>CF_GDIOBJFIRST</summary>
-		GDIOBJFIRST     = 0x0300,
-
-		/// <summary>CF_GDIOBJLAST</summary>
-		GDIOBJLAST      = 0x03FF,
-	}
-
-	public static class UserApi
-	{
-		public static string GetClipboardFormatName(short format)
-		{
-			var sb = new StringBuilder(256);
-			var cch = Private.GetClipboardFormatName(format, sb, sb.Capacity);
-			if (cch == 0)
-				throw new Win32Exception();
-
-			return sb.ToString();
-		}
-
-		private static class Private
-		{
-			[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-			public static extern int GetClipboardFormatName(int format, StringBuilder szFormatName, int cchMaxCount);
-		}
 	}
 }

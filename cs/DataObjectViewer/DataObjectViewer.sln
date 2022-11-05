@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataObjectViewer", "DataObjectViewer.csproj", "{224B2CFD-3ABB-4DBB-B790-0C7B979FA336}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasler.ComponentModel", "..\..\..\tasler-dotnet\Source\Tasler.ComponentModel\Tasler.ComponentModel.csproj", "{2D4E35A3-754D-4E8E-B52C-AA2D0DD9E059}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasler.Interop", "..\..\..\tasler-dotnet\Source\Tasler.Interop\Tasler.Interop.csproj", "{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataObjectViewer", "DataObjectViewer.csproj", "{B40573CC-DA0A-4DFD-839B-FC641B3E6702}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{224B2CFD-3ABB-4DBB-B790-0C7B979FA336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{224B2CFD-3ABB-4DBB-B790-0C7B979FA336}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{224B2CFD-3ABB-4DBB-B790-0C7B979FA336}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{224B2CFD-3ABB-4DBB-B790-0C7B979FA336}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D4E35A3-754D-4E8E-B52C-AA2D0DD9E059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D4E35A3-754D-4E8E-B52C-AA2D0DD9E059}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D4E35A3-754D-4E8E-B52C-AA2D0DD9E059}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D4E35A3-754D-4E8E-B52C-AA2D0DD9E059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA6287D9-6F8B-4F6D-8D44-D8359A43D644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B40573CC-DA0A-4DFD-839B-FC641B3E6702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B40573CC-DA0A-4DFD-839B-FC641B3E6702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B40573CC-DA0A-4DFD-839B-FC641B3E6702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B40573CC-DA0A-4DFD-839B-FC641B3E6702}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +36,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\..\..\tasler-dotnet\Source\Tasler.AssemblyInfo\Tasler.AssemblyInfo.Shared.projitems*{2d4e35a3-754d-4e8e-b52c-aa2d0dd9e059}*SharedItemsImports = 5
+		..\..\..\tasler-dotnet\Source\Tasler.AssemblyInfo\Tasler.AssemblyInfo.Shared.projitems*{ca6287d9-6f8b-4f6d-8d44-d8359a43d644}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
