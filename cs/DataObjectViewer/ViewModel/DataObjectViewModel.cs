@@ -3,10 +3,11 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Runtime.InteropServices.ComTypes;
-	using DataObjectViewer.ComponentModel.Mvvm;
+	using Tasler.ComponentModel;
 	using DataObjectViewer.Utility;
+	using System.ComponentModel;
 
-	public class DataObjectViewModel : ParentedObservableObject<MainViewModel>
+	public class DataObjectViewModel : Child<MainViewModel>, INotifyPropertyChanged, IModelContainer<System.Windows.IDataObject>
 	{
 		private const int c_enumerationBlockSize = 16;
 
@@ -27,12 +28,16 @@
 
 		public System.Windows.IDataObject Model { get; private set; }
 
+		public IDataObject ComModel => this.Model as IDataObject;
+
 		public string Name
 		{
 			get { return this.name; }
-			set { this.SetProperty(ref this.name, value, "Name"); }
+			set { this.PropertyChanged.SetProperty(this, value, ref this.name); }
 		}
 		private string name;
+
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		public IEnumerable<FormatViewModel> Formats
 		{

@@ -6,9 +6,10 @@
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Text;
-	using DataObjectViewer.ComponentModel.Mvvm;
+	using DataObjectViewer.Properties;
+	using Tasler.ComponentModel;
 
-	public class FormatViewModel : ParentedObservableObject<DataObjectViewModel>
+	public class FormatViewModel : Child<DataObjectViewModel>, IModelContainer<FORMATETC>
 	{
 		public FormatViewModel(DataObjectViewModel parent, FORMATETC model)
 			: base(parent)
@@ -94,15 +95,15 @@
 					var names = new List<string>(4);
 
 					if (value.HasFlag(DVASPECT.DVASPECT_CONTENT))
-						names.Add("Content");
+						names.Add(Strings.DeviceAspectContent);
 					if (value.HasFlag(DVASPECT.DVASPECT_THUMBNAIL))
-						names.Add("Thumbnail");
+						names.Add(Strings.DeviceAspectThumbnail);
 					if (value.HasFlag(DVASPECT.DVASPECT_ICON))
-						names.Add("Icon");
+						names.Add(Strings.DeviceAspectIcon);
 					if (value.HasFlag(DVASPECT.DVASPECT_DOCPRINT))
-						names.Add("DocPrint");
+						names.Add(Strings.DeviceAspectDocPrint);
 
-					_aspect = string.Join(", ", names);
+					_aspect = string.Join(" | ", names);
 				}
 
 				return _aspect;
@@ -136,19 +137,19 @@
 					else
 					{
 						if (value.HasFlag(TYMED.TYMED_HGLOBAL))
-							names.Add("HGLOBAL");
+							names.Add(Strings.MediaTypeHGLOBAL);
 						if (value.HasFlag(TYMED.TYMED_FILE))
-							names.Add("File");
+							names.Add(Strings.MediaTypeFile);
 						if (value.HasFlag(TYMED.TYMED_ISTREAM))
-							names.Add("IStream");
+							names.Add(Strings.MediaTypeIStream);
 						if (value.HasFlag(TYMED.TYMED_ISTORAGE))
-							names.Add("IStorage");
+							names.Add(Strings.MediaTypeIStorage);
 						if (value.HasFlag(TYMED.TYMED_GDI))
-							names.Add("GDI");
+							names.Add(Strings.MediaTypeGDI);
 						if (value.HasFlag(TYMED.TYMED_MFPICT))
-							names.Add("Metafile");
+							names.Add(Strings.MediaTypeMetafilePict);
 						if (value.HasFlag(TYMED.TYMED_ENHMF))
-							names.Add("Enhanced Metafile");
+							names.Add(Strings.MediaTypeEnhancedMetafile);
 					}
 
 					_mediumType = string.Join(", ", names);

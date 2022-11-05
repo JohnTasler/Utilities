@@ -1,6 +1,5 @@
-﻿namespace DataObjectViewer.ComponentModel.Mvvm
+﻿namespace DataObjectViewer.ComponentModel
 {
-
 	public enum ApplicationState
 	{
 		Loading,

@@ -3,16 +3,16 @@
 	using System;
 	using System.ComponentModel;
 	using System.Windows;
-	using DataObjectViewer.ComponentModel.Mvvm;
+	using DataObjectViewer.ComponentModel;
 	using DataObjectViewer.View;
 	using DataObjectViewer.ViewModel;
-	
+
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
 	public partial class App : Application
 	{
-		private MainViewModel mainViewModel;
+		private MainViewModel _mainViewModel;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="App"/> class.
@@ -25,11 +25,11 @@
 		{
 			this.InitializeComponent();
 
-			this.mainViewModel = new MainViewModel();
-			this.mainViewModel.PropertyChanged += this.mainViewModel_PropertyChanged;
+			_mainViewModel = new MainViewModel();
+			_mainViewModel.PropertyChanged += this.mainViewModel_PropertyChanged;
 
 			this.MainWindow = new MainView();
-			this.MainWindow.DataContext = mainViewModel;
+			this.MainWindow.DataContext = _mainViewModel;
 			this.MainWindow.Show();
 		}
 
@@ -50,8 +50,8 @@
 		{
 			switch (e.PropertyName)
 			{
-				case "ApplicationState":
-					if (this.mainViewModel.ApplicationState == ApplicationState.Unloading)
+				case nameof(_mainViewModel.ApplicationState):
+					if (_mainViewModel.ApplicationState == ApplicationState.Unloading)
 						this.MainWindow.Close();
 					break;
 			}
