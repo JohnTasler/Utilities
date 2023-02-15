@@ -7,7 +7,8 @@
 
 	/// <summary>
 	/// An imlementation of <see cref="IValueConverter"/> that converts a boolean value to one of two
-	/// <see cref="Visibility"/> values, specified by the <see cref="True"/> and <see cref="False"/> properties.
+	/// <see cref="Visibility"/> values, specified by the <see cref="TrueValue"/> and
+	/// <see cref="FalseValue"/> properties.
 	/// </summary>
 	public class BooleanToVisibilityConverter : IValueConverter
 	{
