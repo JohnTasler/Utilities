@@ -2,16 +2,22 @@
 
 int main()
 {
-	std::set<std::string> lines;
+	std::map<std::string, size_t> lines;
+	std::map<size_t, std::string_view> orderedByIndex;
 
-	for (std::string line; std::getline(std::cin, line); )
+	size_t index = 0;
+	for (std::string line; std::getline(std::cin, line); ++index)
 	{
-		lines.emplace(line);
+		if (lines.end() != lines.find(line))
+		{
+			lines.emplace(line, index);
+			orderedByIndex.emplace(index, line);
+		}
 	}
 
-	for (auto& line : lines)
+	for (auto const& item : orderedByIndex)
 	{
-		std::cout << line << std::endl;
+		std::cout << item.second << std::endl;
 	}
 
 	return 0;
