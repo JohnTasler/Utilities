@@ -1,3 +1,0 @@
-BUILD_PASS2_CONSUMES= \
-    iot\shell\embedded\shell\nonunittest\messagedialogtester\messagedialogtester.light\app|PASS2 \
-
