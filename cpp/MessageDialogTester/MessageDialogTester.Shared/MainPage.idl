@@ -1,0 +1,29 @@
+import "StringStringPair.idl";
+
+namespace MessageDialogTester
+{
+	[default_interface]
+	runtimeclass MainPage
+		: Windows.UI.Xaml.Controls.UserControl
+		, Windows.UI.Xaml.Data.INotifyPropertyChanged
+	{
+		MainPage();
+		MainPage ViewModel { get; };
+
+		String Title;
+		String MessageContent;
+
+		Windows.Foundation.Collections.IVectorView<StringStringPair> QuickContentItems { get; };
+		Int32 SelectedQuickContentIndex;
+
+		Int32 SelectedButtonCountIndex;
+
+		Windows.Foundation.Collections.IObservableVector<String> DefaultButtonItems { get; };
+		Int32 SelectedDefaultButtonIndex;
+
+		Windows.Foundation.Collections.IObservableVector<String> CancelButtonItems { get; };
+		Int32 SelectedCancelButtonIndex;
+
+		Windows.Foundation.Collections.IObservableVector<StringStringPair> ButtonLabels { get; };
+	}
+}

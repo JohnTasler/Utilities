@@ -1,0 +1,12 @@
+namespace MessageDialogTester
+{
+	[default_interface]
+	runtimeclass StringStringPair
+	{
+		StringStringPair();
+		StringStringPair(String key, String theValue);
+
+		String Key;
+		String Value;
+	}
+}

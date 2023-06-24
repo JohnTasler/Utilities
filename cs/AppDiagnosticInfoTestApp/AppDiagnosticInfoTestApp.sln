@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDiagnosticInfoTestApp", "AppDiagnosticInfoTestApp\AppDiagnosticInfoTestApp.csproj", "{EB47B9BC-A956-40FB-B6C6-F1A42349E4CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder1", "Solution Folder1", "{697C6461-B9E4-4E04-A228-7C3B49411AA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{4C384B4A-529E-4117-8CD1-F42CAD6479A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder2", "NewFolder2", "{8A178C17-00D5-4F46-A58F-679C843914EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +50,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB47B9BC-A956-40FB-B6C6-F1A42349E4CD} = {697C6461-B9E4-4E04-A228-7C3B49411AA6}
+		{8A178C17-00D5-4F46-A58F-679C843914EE} = {4C384B4A-529E-4117-8CD1-F42CAD6479A1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8321AD41-D6F7-4875-A833-A8C466C51643}

@@ -56,8 +56,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{57defb13-52a2-4db6-bf02-5e8450a04a84}</ProjectGuid>
-    <ProjectName>MessageDialogTester.Light</ProjectName>
+    <ProjectGuid>{805c45e0-c0fd-466b-aa22-f4876197695e}</ProjectGuid>
+    <ProjectName>MessageDialogTester.Dark</ProjectName>
     <RootNamespace>MessageDialogTester</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
@@ -66,10 +66,10 @@
     <ConfigurationType>Application</ConfigurationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <GenerateManifest>true</GenerateManifest>
-    <TargetName>MessageDialogTester.Light</TargetName>
-    <PlatformToolset>v142</PlatformToolset>
+    <TargetName>MessageDialogTester.Dark</TargetName>
+    <PlatformToolset>v143</PlatformToolset>
     <WindowsTargetPlatformVersion Condition="!$(RazzleBuild)">10.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion Condition="!$(RazzleBuild)">10.0.18362.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformMinVersion Condition="!$(RazzleBuild)">10.0.22621.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
@@ -107,9 +107,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Shared\MessageDialogException.xaml.h">
-      <DependentUpon>..\..\Shared\MessageDialogException.xaml</DependentUpon>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\MessageDialogResult.xaml.h">
       <DependentUpon>..\..\Shared\MessageDialogResult.xaml</DependentUpon>
     </ClInclude>
@@ -126,9 +123,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="..\..\Shared\MainPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\..\Shared\MessageDialogException.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="..\..\Shared\MessageDialogResult.xaml">
@@ -160,9 +154,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\MainPage.xaml.cpp">
       <DependentUpon>..\..\Shared\MainPage.xaml</DependentUpon>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\MessageDialogException.xaml.cpp">
-      <DependentUpon>..\..\Shared\MessageDialogException.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="..\..\Shared\MessageDialogResult.xaml.cpp">
       <DependentUpon>..\..\Shared\MessageDialogResult.xaml</DependentUpon>
