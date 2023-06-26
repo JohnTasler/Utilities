@@ -33,6 +33,8 @@ namespace winrt::MessageDialogTester::implementation
 
 	void MainPage::InitializeComponent()
 	{
+		MainPageT::InitializeComponent();
+
 		std::vector<StringStringPair::class_type> quickContentItems =
 		{
 			{ L"(custom)", L"" },
@@ -51,7 +53,7 @@ namespace winrt::MessageDialogTester::implementation
 			{ L"Xishuangbanna Dai / New Tai Lue", L"ᦎᦷᦑᦺᦖᦺᧈᦉᦲᧇᦉᦸᧂᦗᧃᦓᦱ" },
 		};
 		m_propertyQuickContentItems =
-			single_threaded_vector(std::move(quickContentItems)).GetView();
+			single_threaded_observable_vector(std::move(quickContentItems));
 
 		auto makeButtonItemsVector = []
 		{
@@ -103,10 +105,9 @@ namespace winrt::MessageDialogTester::implementation
 	void MainPage::OnSelectedButtonCountIndexChanged(int32_t const& oldValue, int32_t const& newValue)
 	{
 		m_propertyButtonLabels.Clear();
-
-		for (auto const& buttonLabel : m_allButtonLabels)
+		for (uint32_t index = 0; index < static_cast<uint32_t>(m_propertySelectedButtonCountIndex) && index < m_allButtonLabels.size(); ++index)
 		{
-			m_propertyButtonLabels.Append(buttonLabel);
+			m_propertyButtonLabels.Append(m_allButtonLabels[index]);
 		}
 
 		SelectedDefaultButtonIndex(RefreshButtonIndexItems(m_visibleDefaultButtonItems, m_propertyDefaultButtonItems, m_propertySelectedDefaultButtonIndex));
@@ -117,9 +118,9 @@ namespace winrt::MessageDialogTester::implementation
 	{
 		visibleItems.clear();
 
-		for (auto const& item : items)
+		for (uint32_t index = 0; index <= static_cast<uint32_t>(m_propertySelectedButtonCountIndex); ++index)
 		{
-			visibleItems.push_back(item);
+			visibleItems.push_back(items.GetAt(index));
 		}
 
 		return std::min(selectedButtonIndex, m_propertySelectedButtonCountIndex);
@@ -127,6 +128,7 @@ namespace winrt::MessageDialogTester::implementation
 
 	void MainPage::MainPage_Loaded(IInspectable sender, RoutedEventArgs e)
 	{
+		OnSelectedQuickContentIndexChanged(0, SelectedQuickContentIndex());
 		SelectedButtonCountIndex(3);
 		SelectedDefaultButtonIndex(1);
 		SelectedCancelButtonIndex(3);
@@ -142,7 +144,7 @@ namespace winrt::MessageDialogTester::implementation
 
 			auto commands = dialog.Commands();
 			commands.Clear();
-			for (auto label : m_visibleButtonLabels)
+			for (auto label : m_propertyButtonLabels)
 			{
 				commands.Append(UICommand{ label.Value() });
 			}

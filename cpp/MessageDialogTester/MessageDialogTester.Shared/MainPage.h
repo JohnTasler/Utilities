@@ -17,10 +17,10 @@ namespace winrt::MessageDialogTester::implementation
 
 		class_type ViewModel() { return *this; }
 
-		DEFINE_PROPERTY(hstring, Title, L"Hello, world!!!")
+		DEFINE_PROPERTY(hstring, Title, L"Hello, world!!!");
 		DEFINE_PROPERTY_CALLBACK(hstring, MessageContent, {})
 
-		DEFINE_PROPERTY_READONLY(wfc::IVectorView<StringStringPair::class_type>, QuickContentItems, nullptr)
+		DEFINE_PROPERTY_READONLY(wfc::IObservableVector<StringStringPair::class_type>, QuickContentItems, nullptr)
 		DEFINE_PROPERTY_CALLBACK(int32_t, SelectedQuickContentIndex, 1)
 
 		DEFINE_PROPERTY_CALLBACK(int32_t, SelectedButtonCountIndex, -1)
@@ -41,7 +41,6 @@ namespace winrt::MessageDialogTester::implementation
 
 		bool m_isSettingContentFromComboBox = false;
 		std::vector<StringStringPair::class_type> m_allButtonLabels;
-		std::vector<StringStringPair::class_type> m_visibleButtonLabels;
 		std::vector<hstring> m_visibleDefaultButtonItems;
 		std::vector<hstring> m_visibleCancelButtonItems;
 	};

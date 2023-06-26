@@ -1,10 +1,12 @@
 import "StringStringPair.idl";
 
+#define WFC Windows.Foundation.Collections
+
 namespace MessageDialogTester
 {
 	[default_interface]
 	runtimeclass MainPage
-		: Windows.UI.Xaml.Controls.UserControl
+		: Windows.UI.Xaml.Controls.Page
 		, Windows.UI.Xaml.Data.INotifyPropertyChanged
 	{
 		MainPage();
@@ -13,17 +15,17 @@ namespace MessageDialogTester
 		String Title;
 		String MessageContent;
 
-		Windows.Foundation.Collections.IVectorView<StringStringPair> QuickContentItems { get; };
+		WFC.IObservableVector<StringStringPair> QuickContentItems { get; };
 		Int32 SelectedQuickContentIndex;
 
 		Int32 SelectedButtonCountIndex;
 
-		Windows.Foundation.Collections.IObservableVector<String> DefaultButtonItems { get; };
+		WFC.IObservableVector<String> DefaultButtonItems { get; };
 		Int32 SelectedDefaultButtonIndex;
 
-		Windows.Foundation.Collections.IObservableVector<String> CancelButtonItems { get; };
+		WFC.IObservableVector<String> CancelButtonItems { get; };
 		Int32 SelectedCancelButtonIndex;
 
-		Windows.Foundation.Collections.IObservableVector<StringStringPair> ButtonLabels { get; };
+		WFC.IObservableVector<StringStringPair> ButtonLabels { get; };
 	}
 }
