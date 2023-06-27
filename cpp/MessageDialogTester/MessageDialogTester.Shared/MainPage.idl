@@ -1,13 +1,13 @@
 import "StringStringPair.idl";
 
 #define WFC Windows.Foundation.Collections
+#define WUXC Windows.UI.Xaml.Controls
+#define WUXD Windows.UI.Xaml.Data
 
 namespace MessageDialogTester
 {
 	[default_interface]
-	runtimeclass MainPage
-		: Windows.UI.Xaml.Controls.Page
-		, Windows.UI.Xaml.Data.INotifyPropertyChanged
+	runtimeclass MainPage : WUXC.Page, WUXD.INotifyPropertyChanged
 	{
 		MainPage();
 		MainPage ViewModel { get; };

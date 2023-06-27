@@ -1,12 +1,17 @@
 #include "pch.h"
 #include "MainPage.h"
 #include "MainPage.g.cpp"
+#include "MessageDialogResultView.h"
+#include "MessageDialogResultViewModel.h"
+#include "MessageDialogExceptionView.h"
+#include "MessageDialogExceptionViewModel.h"
 
 using namespace std::literals;
 using namespace winrt;
 using namespace winrt::Windows::Foundation::Collections;
 using namespace winrt::Windows::UI::Popups;
 using namespace winrt::Windows::UI::Xaml;
+using namespace winrt::Windows::UI::Xaml::Controls;
 
 namespace winrt::MessageDialogTester::implementation
 {
@@ -132,10 +137,14 @@ namespace winrt::MessageDialogTester::implementation
 		SelectedButtonCountIndex(3);
 		SelectedDefaultButtonIndex(1);
 		SelectedCancelButtonIndex(3);
+
+		this->titleTextBox().Focus(FocusState::Programmatic);
 	}
 
 	fire_and_forget MainPage::Button_Click(IInspectable sender, RoutedEventArgs e)
 	{
+		IContentDialog3 resultDialog;
+
 		try
 		{
 			MessageDialog dialog{ MessageContent(), Title() };
@@ -149,14 +158,24 @@ namespace winrt::MessageDialogTester::implementation
 				commands.Append(UICommand{ label.Value() });
 			}
 
-			co_await dialog.ShowAsync();
+			auto const& chosenCommand = co_await dialog.ShowAsync();
+			uint32_t index = 0;
+			dialog.Commands().IndexOf(chosenCommand, index);
+
+			auto resultViewModel = make_self<MessageDialogResultViewModel>(chosenCommand, index);
+			resultDialog = make_self<MessageDialogResultView>(*resultViewModel).as<IContentDialog3>();
 		}
 		catch (hresult_error const& ex)
 		{
 			OutputDebugStringW(ex.message().c_str());
 
-			// TODO: Create result view models and show ContentDialog
+			auto exceptionViewModel = make_self<MessageDialogExceptionViewModel>(ex);
+			resultDialog = make_self<MessageDialogExceptionView>(*exceptionViewModel).as<IContentDialog3>();
+		}
 
+		if (resultDialog)
+		{
+			co_await resultDialog.ShowAsync(ContentDialogPlacement::Popup);
 		}
 	}
 }

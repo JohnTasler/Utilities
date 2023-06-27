@@ -1,102 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
-		<HasSharedItems>true</HasSharedItems>
-		<ItemsProjectGuid>{468F3BDD-70DF-48CD-AEC6-3C7832B9D823}</ItemsProjectGuid>
-	</PropertyGroup>
-	<ItemDefinitionGroup>
-		<ClCompile>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{468F3BDD-70DF-48CD-AEC6-3C7832B9D823}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <!-- Common Tool Configuration -->
+  <ItemDefinitionGroup>
+    <Link>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <PropertyGroup>
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <!-- Debug Tool Configuration -->
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <!-- Release Tool Configuration -->
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <!-- Precompiled Headers -->
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+		<ClCompile Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.cpp">
+			<DependentUpon>MessageDialogExceptionView.xaml</DependentUpon>
 		</ClCompile>
-	</ItemDefinitionGroup>
-	<ItemGroup>
-		<ProjectCapability Include="SourceItemsFromImports" />
-	</ItemGroup>
-	<!-- Common Tool Configuration -->
-	<ItemDefinitionGroup>
-		<Link>
-			<GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-		</Link>
-	</ItemDefinitionGroup>
-	<PropertyGroup>
-		<ConfigurationType>Application</ConfigurationType>
-		<CharacterSet>Unicode</CharacterSet>
-	</PropertyGroup>
-	<!-- Debug Tool Configuration -->
-	<ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
-		<ClCompile>
-			<PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+		<ClCompile Include="$(MSBuildThisFileDirectory)MessageDialogExceptionViewModel.cpp">
+			<DependentUpon>MessageDialogExceptionViewModel.idl</DependentUpon>
 		</ClCompile>
-	</ItemDefinitionGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
-		<UseDebugLibraries>true</UseDebugLibraries>
-		<LinkIncremental>true</LinkIncremental>
-	</PropertyGroup>
-	<!-- Release Tool Configuration -->
-	<ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
-		<ClCompile>
-			<PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+		<ClCompile Include="$(MSBuildThisFileDirectory)MessageDialogResultView.cpp">
+			<DependentUpon>MessageDialogResultView.xaml</DependentUpon>
 		</ClCompile>
-		<Link>
-			<EnableCOMDATFolding>true</EnableCOMDATFolding>
-			<OptimizeReferences>true</OptimizeReferences>
-		</Link>
-	</ItemDefinitionGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<UseDebugLibraries>false</UseDebugLibraries>
-		<WholeProgramOptimization>true</WholeProgramOptimization>
-		<LinkIncremental>false</LinkIncremental>
-	</PropertyGroup>
-	<!-- Precompiled Headers -->
-	<ItemDefinitionGroup>
-		<ClCompile>
-			<PrecompiledHeader>Use</PrecompiledHeader>
-			<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-			<PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+		<ClCompile Include="$(MSBuildThisFileDirectory)MessageDialogResultViewModel.cpp">
+			<DependentUpon>MessageDialogResultViewModel.idl</DependentUpon>
 		</ClCompile>
-	</ItemDefinitionGroup>
-	<ItemGroup>
-		<ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
-		<ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
-			<PrecompiledHeader>Create</PrecompiledHeader>
-			<DependentUpon>pch.h</DependentUpon>
-		</ClCompile>
-		<!--StringStringPair-->
-		<Midl Include="$(MSBuildThisFileDirectory)StringStringPair.idl" />
-		<ClInclude Include="$(MSBuildThisFileDirectory)StringStringPair.h">
-			<DependentUpon>StringStringPair.idl</DependentUpon>
+		<ClInclude Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.h">
+			<DependentUpon>MessageDialogExceptionView.xaml</DependentUpon>
 		</ClInclude>
-		<ClCompile Include="$(MSBuildThisFileDirectory)StringStringPair.cpp">
-			<DependentUpon>StringStringPair.idl</DependentUpon>
-		</ClCompile>
-	</ItemGroup>
-	<!-- MainPage -->
-	<ItemGroup>
-		<Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+		<ClInclude Include="$(MSBuildThisFileDirectory)MessageDialogExceptionViewModel.h">
+			<DependentUpon>MessageDialogExceptionViewModel.idl</DependentUpon>
+		</ClInclude>
+		<ClInclude Include="$(MSBuildThisFileDirectory)MessageDialogResultView.h">
+			<DependentUpon>MessageDialogResultView.xaml</DependentUpon>
+		</ClInclude>
+		<ClInclude Include="$(MSBuildThisFileDirectory)MessageDialogResultViewModel.h">
+			<DependentUpon>MessageDialogResultViewModel.idl</DependentUpon>
+		</ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <DependentUpon>pch.h</DependentUpon>
+    </ClCompile>
+		<Midl Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.idl">
+			<DependentUpon>MessageDialogExceptionView.xaml</DependentUpon>
+		</Midl>
+    <Midl Include="$(MSBuildThisFileDirectory)MessageDialogExceptionViewModel.idl" />
+		<Midl Include="$(MSBuildThisFileDirectory)MessageDialogResultView.idl">
+			<DependentUpon>MessageDialogResultView.xaml</DependentUpon>
+		</Midl>
+    <Midl Include="$(MSBuildThisFileDirectory)MessageDialogResultViewModel.idl" />
+    <!--StringStringPair-->
+    <Midl Include="$(MSBuildThisFileDirectory)StringStringPair.idl" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StringStringPair.h">
+      <DependentUpon>StringStringPair.idl</DependentUpon>
+    </ClInclude>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StringStringPair.cpp">
+      <DependentUpon>StringStringPair.idl</DependentUpon>
+    </ClCompile>
+  </ItemGroup>
+  <!-- MainPage -->
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Midl Include="$(MSBuildThisFileDirectory)MainPage.idl">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Midl>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainPage.h">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </ClInclude>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainPage.cpp">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </ClCompile>
+		<Page Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.xaml">
 			<SubType>Designer</SubType>
 		</Page>
-		<Midl Include="$(MSBuildThisFileDirectory)MainPage.idl">
-			<DependentUpon>MainPage.xaml</DependentUpon>
-		</Midl>
-		<ClInclude Include="$(MSBuildThisFileDirectory)MainPage.h">
-			<DependentUpon>MainPage.xaml</DependentUpon>
-		</ClInclude>
-		<ClCompile Include="$(MSBuildThisFileDirectory)MainPage.cpp">
-			<DependentUpon>MainPage.xaml</DependentUpon>
-		</ClCompile>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="$(MSBuildThisFileDirectory)ProjectConfigurations.props" />
-	</ItemGroup>
-	<!--Image Assets-->
-	<ItemGroup>
-		<Image Include="$(MSBuildThisFileDirectory)Assets\LockScreenLogo.scale-200.png" />
-		<Image Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.scale-200.png" />
-		<Image Include="$(MSBuildThisFileDirectory)Assets\Square150x150Logo.scale-200.png" />
-		<Image Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.scale-200.png" />
-		<Image Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-		<Image Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.png" />
-		<Image Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-200.png" />
-	</ItemGroup>
+		<Page Include="$(MSBuildThisFileDirectory)MessageDialogResultView.xaml" >
+			<SubType>Designer</SubType>
+		</Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)ProjectConfigurations.props" />
+  </ItemGroup>
+  <!--Image Assets-->
+  <ItemGroup>
+    <Image Include="$(MSBuildThisFileDirectory)Assets\LockScreenLogo.scale-200.png" />
+    <Image Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.scale-200.png" />
+    <Image Include="$(MSBuildThisFileDirectory)Assets\Square150x150Logo.scale-200.png" />
+    <Image Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.scale-200.png" />
+    <Image Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Image Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.png" />
+    <Image Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
 </Project>

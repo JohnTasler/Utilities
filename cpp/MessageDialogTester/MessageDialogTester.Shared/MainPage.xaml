@@ -29,11 +29,13 @@
 			Doing this
 			  - ensures focus is by default on an element that doesn't require OSK
 			  - provides a "DoNothing" button that test can leverage to set UI in a known position
-				without triggering any action
+			    without triggering any action
 			-->
-			<Button x:Name="DoNothing" Content="Title"/>
+			<!--<Button x:Name="DoNothing" Content="Title"/>-->
 			<TextBox
+				x:Name="titleTextBox"
 				AutomationProperties.AutomationId="titleTextBox"
+				Header="Title"
 				IsTextPredictionEnabled="True"
 				TextWrapping="NoWrap"
 				Text="{x:Bind ViewModel.Title,Mode=TwoWay}"
