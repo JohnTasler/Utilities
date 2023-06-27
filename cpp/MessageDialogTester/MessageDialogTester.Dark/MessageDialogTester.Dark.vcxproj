@@ -6,8 +6,8 @@
   <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" />
   <Import Project="..\MessageDialogTester.Shared\ProjectConfigurations.props" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{d48e65e1-dd6a-4091-a54b-0af815494388}</ProjectGuid>
-    <ProjectName>MessageDialogTester.Light</ProjectName>
+    <ProjectGuid>{F958AACB-B5B1-4C45-8511-9F09AF7D0978}</ProjectGuid>
+    <ProjectName>MessageDialogTester.Dark</ProjectName>
     <CppWinRTOptimized>true</CppWinRTOptimized>
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <CppWinRTGenerateWindowsMetadata>true</CppWinRTGenerateWindowsMetadata>

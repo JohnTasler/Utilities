@@ -8,6 +8,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MessageDialogTester.Shared"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mvvm-winrt", "..\..\..\mvvm-cppwinrt\mvvm-winrt.vcxitems", "{119310B5-558D-494E-807F-8A6C520B03A3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MessageDialogTester.Dark", "MessageDialogTester.Dark\MessageDialogTester.Dark.vcxproj", "{F958AACB-B5B1-4C45-8511-9F09AF7D0978}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -44,6 +46,30 @@ Global
 		{D48E65E1-DD6A-4091-A54B-0AF815494388}.Release|x86.ActiveCfg = Release|Win32
 		{D48E65E1-DD6A-4091-A54B-0AF815494388}.Release|x86.Build.0 = Release|Win32
 		{D48E65E1-DD6A-4091-A54B-0AF815494388}.Release|x86.Deploy.0 = Release|Win32
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|ARM.ActiveCfg = Debug|ARM
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|ARM.Build.0 = Debug|ARM
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|ARM.Deploy.0 = Debug|ARM
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|ARM64.Build.0 = Debug|ARM64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|x64.ActiveCfg = Debug|x64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|x64.Build.0 = Debug|x64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|x64.Deploy.0 = Debug|x64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|x86.ActiveCfg = Debug|Win32
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|x86.Build.0 = Debug|Win32
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Debug|x86.Deploy.0 = Debug|Win32
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|ARM.ActiveCfg = Release|ARM
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|ARM.Build.0 = Release|ARM
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|ARM.Deploy.0 = Release|ARM
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|ARM64.ActiveCfg = Release|ARM64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|ARM64.Build.0 = Release|ARM64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|ARM64.Deploy.0 = Release|ARM64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|x64.ActiveCfg = Release|x64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|x64.Build.0 = Release|x64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|x64.Deploy.0 = Release|x64
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|x86.ActiveCfg = Release|Win32
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|x86.Build.0 = Release|Win32
+		{F958AACB-B5B1-4C45-8511-9F09AF7D0978}.Release|x86.Deploy.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,5 +82,7 @@ Global
 		MessageDialogTester.Shared\MessageDialogTester.Shared.vcxitems*{468f3bdd-70df-48cd-aec6-3c7832b9d823}*SharedItemsImports = 9
 		..\..\..\mvvm-cppwinrt\mvvm-winrt.vcxitems*{d48e65e1-dd6a-4091-a54b-0af815494388}*SharedItemsImports = 4
 		MessageDialogTester.Shared\MessageDialogTester.Shared.vcxitems*{d48e65e1-dd6a-4091-a54b-0af815494388}*SharedItemsImports = 4
+		..\..\..\mvvm-cppwinrt\mvvm-winrt.vcxitems*{f958aacb-b5b1-4c45-8511-9f09af7d0978}*SharedItemsImports = 4
+		MessageDialogTester.Shared\MessageDialogTester.Shared.vcxitems*{f958aacb-b5b1-4c45-8511-9f09af7d0978}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
