@@ -1,0 +1,12 @@
+import "MessageDialogExceptionViewModel.idl";
+
+#define WUXC Windows.UI.Xaml.Controls
+
+namespace MessageDialogTester
+{
+	[default_interface]
+	runtimeclass MessageDialogExceptionView : WUXC.ContentDialog
+	{
+		MessageDialogExceptionViewModel ViewModel{ get; };
+	}
+}

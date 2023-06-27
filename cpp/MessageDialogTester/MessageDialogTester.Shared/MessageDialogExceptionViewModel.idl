@@ -1,0 +1,9 @@
+namespace MessageDialogTester
+{
+	[default_interface]
+	runtimeclass MessageDialogExceptionViewModel
+	{
+		String HResultFormatted { get; };
+		String Message { get; };
+	}
+}

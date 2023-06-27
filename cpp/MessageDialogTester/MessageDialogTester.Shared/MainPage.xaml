@@ -1,0 +1,150 @@
+<Page
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	xmlns:vm="using:MessageDialogTester"
+
+	x:Class="MessageDialogTester.MainPage"
+	d:DesignWidth="720" d:DesignHeight="492"
+	MinWidth="640"
+	Loaded="MainPage_Loaded"
+	>
+	<Grid
+		VerticalAlignment="Top"
+		Padding="40"
+		Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+		>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="16"/>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="16"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel>
+			<!--
+			set title of textbox below as button.
+			Doing this
+			  - ensures focus is by default on an element that doesn't require OSK
+			  - provides a "DoNothing" button that test can leverage to set UI in a known position
+			    without triggering any action
+			-->
+			<!--<Button x:Name="DoNothing" Content="Title"/>-->
+			<TextBox
+				x:Name="titleTextBox"
+				AutomationProperties.AutomationId="titleTextBox"
+				Header="Title"
+				IsTextPredictionEnabled="True"
+				TextWrapping="NoWrap"
+				Text="{x:Bind ViewModel.Title,Mode=TwoWay}"
+			/>
+		</StackPanel>
+
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="20" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<TextBox
+				AutomationProperties.AutomationId="contentTextBox"
+				Grid.Column="0"
+				MinHeight="96"
+				Header="Content" PlaceholderText="Content"
+				IsTextPredictionEnabled="True"
+				TextWrapping="Wrap"
+				Text="{x:Bind ViewModel.MessageContent,Mode=TwoWay}"
+				/>
+
+			<ComboBox
+				AutomationProperties.AutomationId="quickContentComboBox"
+				Grid.Column="2"
+				Header="Quick Content"
+				ItemsSource="{x:Bind ViewModel.QuickContentItems}"
+				SelectedIndex="{x:Bind ViewModel.SelectedQuickContentIndex,Mode=TwoWay}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate x:DataType="vm:StringStringPair">
+						<TextBlock Text="{x:Bind Key}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<Button
+				AutomationProperties.AutomationId="showButton"
+				Grid.Column="2"
+				HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+				Width="Auto"
+				Content="Show"
+				Click="Button_Click"
+				/>
+		</Grid>
+
+		<Grid Grid.Row="4">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="180" />
+				<ColumnDefinition Width="40" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+			<StackPanel Grid.Column="0">
+				<ComboBox
+					x:Name="numberOfButtonsComboBox"
+					AutomationProperties.AutomationId="numberOfButtonsComboBox"
+					HorizontalAlignment="Stretch"
+					Header="Number of Buttons"
+					SelectedIndex="{x:Bind ViewModel.SelectedButtonCountIndex,Mode=TwoWay}"
+					>
+					<ComboBoxItem Content="0" />
+					<ComboBoxItem Content="1" />
+					<ComboBoxItem Content="2" />
+					<ComboBoxItem Content="3" />
+				</ComboBox>
+				<ComboBox
+					x:Name="defaultButtonIndexComboBox"
+					AutomationProperties.AutomationId="defaultButtonIndexComboBox"
+					HorizontalAlignment="Stretch" Margin="0,16,0,0"
+					Header="Default Button Index"
+					ItemsSource="{x:Bind ViewModel.DefaultButtonItems}"
+					SelectedIndex="{x:Bind ViewModel.SelectedDefaultButtonIndex,Mode=TwoWay}"
+					/>
+				<ComboBox
+					x:Name="cancelButtonIndexComboBox"
+					AutomationProperties.AutomationId="cancelButtonIndexComboBox"
+					HorizontalAlignment="Stretch" Margin="0,16,0,0"
+					Header="Cancel Button Index"
+					ItemsSource="{x:Bind ViewModel.CancelButtonItems}"
+					SelectedIndex="{x:Bind ViewModel.SelectedCancelButtonIndex,Mode=TwoWay}"
+					/>
+			</StackPanel>
+
+			<ItemsControl
+				AutomationProperties.AutomationId="buttonLabelItemsControl"
+				x:Name="buttonLabelItemsControl" Grid.Column="2"
+				Margin="0,-16,0,0"
+				IsTabStop="False"
+				ItemsSource="{x:Bind ViewModel.ButtonLabels}"
+				>
+				<ItemsControl.ItemContainerStyle>
+					<Style TargetType="ContentPresenter">
+						<Setter Property="HorizontalAlignment" Value="Stretch" />
+						<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+					</Style>
+				</ItemsControl.ItemContainerStyle>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate x:DataType="vm:StringStringPair">
+						<TextBox
+							AutomationProperties.AutomationId="labelTextBox"
+							HorizontalAlignment="Stretch" Margin="0,16,0,0"
+							Header="{x:Bind Key}" PlaceholderText="label for button"
+							TextWrapping="NoWrap" Text="{x:Bind Value,Mode=TwoWay}"
+							/>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</Grid>
+	</Grid>
+</Page>

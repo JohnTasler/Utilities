@@ -1,0 +1,11 @@
+#define WUP Windows.UI.Popups
+
+namespace MessageDialogTester
+{
+	[default_interface]
+	runtimeclass MessageDialogResultViewModel
+	{
+		WUP.IUICommand Command { get; };
+		UInt32 Index { get; };
+	}
+}

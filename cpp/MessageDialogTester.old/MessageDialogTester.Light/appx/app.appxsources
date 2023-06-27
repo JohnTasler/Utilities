@@ -1,0 +1,15 @@
+APPX_MANIFEST=..\app\Package.appxmanifest
+
+APPX_FILES= \
+    { ..\app\Assets\SplashScreen.scale-200.png = Assets\SplashScreen.scale-200.png             } \
+    { ..\app\Assets\SplashScreen.scale-200_DeviceFamily-IoT.png = Assets\SplashScreen.scale-200_DeviceFamily-IoT.png } \
+    { ..\app\Assets\Square150x150Logo.scale-200.png   = Assets\Square150x150Logo.scale-200.png } \
+    { ..\app\Assets\Square44x44Logo.scale-200.png     = Assets\Square44x44Logo.scale-200.png   } \
+    { ..\app\Assets\StoreLogo.png                     = Assets\StoreLogo.png                   } \
+    { ..\app\Assets\Wide310x150Logo.scale-200.png     = Assets\Wide310x150Logo.scale-200.png   } \
+    { $(OBJ_PATH)\..\app\$(O)\App.xbf                 = App.xbf                                } \
+    { $(OBJ_PATH)\..\app\$(O)\MainPage.xbf            = MainPage.xbf                           } \
+    { $(OBJ_PATH)\..\app\$(O)\MessageDialogResult.xbf = MessageDialogResult.xbf                } \
+
+APPX_PACKAGE_FILES= \
+    { $(OBJ_PATH)\..\app\$(O)\MessageDialogTester.Light.exe = MessageDialogTester.Light.exe} \

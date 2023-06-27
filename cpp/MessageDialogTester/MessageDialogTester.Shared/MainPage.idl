@@ -1,0 +1,31 @@
+import "StringStringPair.idl";
+
+#define WFC Windows.Foundation.Collections
+#define WUXC Windows.UI.Xaml.Controls
+#define WUXD Windows.UI.Xaml.Data
+
+namespace MessageDialogTester
+{
+	[default_interface]
+	runtimeclass MainPage : WUXC.Page, WUXD.INotifyPropertyChanged
+	{
+		MainPage();
+		MainPage ViewModel { get; };
+
+		String Title;
+		String MessageContent;
+
+		WFC.IObservableVector<StringStringPair> QuickContentItems { get; };
+		Int32 SelectedQuickContentIndex;
+
+		Int32 SelectedButtonCountIndex;
+
+		WFC.IObservableVector<String> DefaultButtonItems { get; };
+		Int32 SelectedDefaultButtonIndex;
+
+		WFC.IObservableVector<String> CancelButtonItems { get; };
+		Int32 SelectedCancelButtonIndex;
+
+		WFC.IObservableVector<StringStringPair> ButtonLabels { get; };
+	}
+}

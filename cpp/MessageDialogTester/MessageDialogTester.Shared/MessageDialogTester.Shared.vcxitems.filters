@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MessageDialogExceptionViewModel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="$(MSBuildThisFileDirectory)Assets\LockScreenLogo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(MSBuildThisFileDirectory)Assets\Square150x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)ProjectConfigurations.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml" />
+    <Page Include="$(MSBuildThisFileDirectory)MessageDialogResultView.xaml" />
+    <Page Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{06056d71-96e3-49df-8df4-c44ca6a158f4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="$(MSBuildThisFileDirectory)StringStringPair.idl" />
+    <Midl Include="$(MSBuildThisFileDirectory)MessageDialogResultViewModel.idl" />
+    <Midl Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.idl" />
+    <Midl Include="$(MSBuildThisFileDirectory)MessageDialogExceptionViewModel.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StringStringPair.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StringStringPair.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MessageDialogExceptionViewModel.cpp" />
+  </ItemGroup>
+</Project>
