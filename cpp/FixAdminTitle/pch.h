@@ -16,6 +16,3 @@
 #include <string>
 #include <string_view>
 using namespace std::literals;
-
-// WIL includes
-#include <wil\resource.h>
