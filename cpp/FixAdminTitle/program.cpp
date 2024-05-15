@@ -2,7 +2,7 @@
 
 inline constexpr auto prefix = "[admin] "sv;
 inline constexpr auto setTitleOpenEscape = "\x1B]0;"sv;
-inline constexpr auto setTitleCloseEscape = "^G"sv;
+inline constexpr auto setTitleCloseEscape = "\x1B\x5C"sv;
 
 void WriteOut(HANDLE fileHandle, std::string_view text)
 {
