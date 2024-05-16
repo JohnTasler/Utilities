@@ -33,6 +33,21 @@ int run()
 	GetConsoleOriginalTitleA(titleArray.data(), static_cast<DWORD>(titleArray.size()));
 	std::string_view title{ titleArray.data() };
 
+	std::string expanded{};
+	if (title.contains('%'))
+	{
+		DWORD expandedSize = ExpandEnvironmentStringsA(title.data(), nullptr, 0);
+		if (expandedSize == 0)
+		{
+			return GetLastError();
+		}
+
+		expanded.resize(static_cast<size_t>(expandedSize));
+		ExpandEnvironmentStringsA(title.data(), expanded.data(), expandedSize);
+
+		title = expanded;
+	}
+
 	WriteLine(out, title);
 
 	return isUserAnAdmin;
