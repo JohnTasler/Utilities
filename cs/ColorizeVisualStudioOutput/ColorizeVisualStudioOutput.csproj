@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<ProjectName>ColorizeVisualStudioOutput</ProjectName>
+		<ProjectGuid>{41F549D4-B9FB-414F-B085-1993178794CA}</ProjectGuid>
+		<RootNamespace>Tasler.Utility.ColorizeVisualStudioOutput</RootNamespace>
+		<AssemblyName>ColorizeVisualStudioOutput</AssemblyName>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PublishAot>true</PublishAot>
+		<IsAotCompatible>true</IsAotCompatible>
+		<InvariantGlobalization>true</InvariantGlobalization>
+	</PropertyGroup>
+
+</Project>

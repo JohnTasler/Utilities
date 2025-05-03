@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ColorizeVisualStudioOutput": {
+      "commandName": "Project",
+      "commandLineArgs": "F:\\temp\\Output-Debug.txt",
+      "workingDirectory": "F:\\temp"
+    }
+  }
+}
