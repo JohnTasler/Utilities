@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.Composition;
 using System.Windows;
+using System.Windows.Input;
 using RawInputExplorer.ViewModels;
 
 namespace RawInputExplorer.Views
@@ -12,9 +12,10 @@ namespace RawInputExplorer.Views
 		public MainView()
 		{
 			this.InitializeComponent();
+
+			this.Loaded += (s, e) => this.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
 		}
 
-		[Import]
 		public DeviceListViewModel ViewModel
 		{
 			get { return (DeviceListViewModel)this.DataContext; }
