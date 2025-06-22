@@ -6,7 +6,7 @@ using namespace winrt;
 namespace winrt::MessageDialogTester::implementation
 {
 	MessageDialogResultView::MessageDialogResultView(MessageDialogResultViewModel::class_type const& viewModel)
-		: m_propertyViewModel(viewModel)
+		: view_base_type(viewModel)
 	{
 	}
 }

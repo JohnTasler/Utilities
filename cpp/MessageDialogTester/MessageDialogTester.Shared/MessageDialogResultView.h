@@ -9,16 +9,14 @@
 #include "MessageDialogResultViewModel.h"
 
 #include <mvvm/property_macros.h>
-#include <mvvm/view_model_base.h>
+#include <mvvm/view_sync_data_context.h>
 
 namespace winrt::MessageDialogTester::implementation
 {
 	struct MessageDialogResultView
 		: MessageDialogResultViewT<MessageDialogResultView>
-		, mvvm::view_model_base<MessageDialogResultView>
+		, mvvm::view_sync_data_context<MessageDialogResultView, MessageDialogResultViewModel::class_type>
 	{
 		MessageDialogResultView(MessageDialogResultViewModel::class_type const& viewModel);
-
-		DEFINE_PROPERTY_READONLY(MessageDialogResultViewModel::class_type, ViewModel, nullptr);
 	};
 }
