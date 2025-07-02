@@ -12,10 +12,10 @@ class Program
 		{
 			var bindCtx = ComApi.CreateBindCtx();
 
-			var monikers = rot.ToArray();
-			Console.WriteLine("{0} Items in the Running Object Table:", monikers.Length);
+			var monikers = rot.ToList();
+			Console.WriteLine("{0} Items in the Running Object Table:", monikers.Count);
 
-			var maxDigits = (int)Math.Truncate(Math.Log10(monikers.Length)) + 1;
+			var maxDigits = (int)Math.Truncate(Math.Log10(monikers.Count)) + 1;
 			var digitsFormatString = "D" + maxDigits;
 
 			var index = 0;
