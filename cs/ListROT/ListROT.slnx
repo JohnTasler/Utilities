@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/_Frameworks/">
+    <Project Path="../../../tasler-dotnet/Source/Tasler.ComponentModel/Tasler.ComponentModel.csproj" />
+    <Project Path="../../../tasler-dotnet/Source/Tasler.Core/Tasler.Core.csproj" />
+    <Project Path="../../../tasler-dotnet/Source/Tasler.Interop.Shell/Tasler.Interop.Shell.csproj" Id="4090fb61-0858-4ae8-a30d-b34464a9505f" />
+    <Project Path="../../../tasler-dotnet/Source/Tasler.Interop/Tasler.Interop.csproj" />
+    <Project Path="../../../tasler-dotnet/Source/Tasler.UI.Wpf/Tasler.UI.Wpf.csproj" Id="cc6be222-de4b-412a-9743-80c187f43ee1" />
+  </Folder>
+  <Project Path="ListROT.csproj" />
+</Solution>

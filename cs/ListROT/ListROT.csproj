@@ -1,62 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{368FABE9-83BD-46CB-BBC9-20C06757FF32}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ListROT</RootNamespace>
-    <AssemblyName>ListROT</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\tasler-dotnet\Source\Tasler.Interop\Tasler.Interop.csproj">
-      <Project>{ca6287d9-6f8b-4f6d-8d44-d8359a43d644}</Project>
-      <Name>Tasler.Interop</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<ProjectName>ListROT</ProjectName>
+		<ProjectGuid>{368FABE9-83BD-46CB-BBC9-20C06757FF32}</ProjectGuid>
+		<RootNamespace>ListROT</RootNamespace>
+		<AssemblyName>ListROT</AssemblyName>
+		<RootNamespace>Tasler.Utility.ColorizeVisualStudioOutput</RootNamespace>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PublishAot>true</PublishAot>
+		<IsAotCompatible>true</IsAotCompatible>
+		<InvariantGlobalization>true</InvariantGlobalization>
+
+		<Title>ListROT</Title>
+		<Description>Console program that lists the display names of the entries in the Running Object Table (COM).</Description>
+		<Company>John Tasler</Company>
+		<Product>ListROT</Product>
+		<Copyright>Copyright © John Tasler. All rights reserved.</Copyright>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\tasler-dotnet\Source\Tasler.Interop\Tasler.Interop.csproj">
+			<Project>{ca6287d9-6f8b-4f6d-8d44-d8359a43d644}</Project>
+			<Name>Tasler.Interop</Name>
+		</ProjectReference>
+	</ItemGroup>
+
 </Project>
