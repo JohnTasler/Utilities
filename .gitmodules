@@ -1,0 +1,6 @@
+[submodule "cpp/modules/tasler-cpp"]
+	path = cpp/modules/tasler-cpp
+	url = https://github.com/JohnTasler/tasler-cpp.git
+[submodule "cpp/modules/mvvm-cppwinrt"]
+	path = cpp/modules/mvvm-cppwinrt
+	url = https://github.com/JohnTasler/mvvm-cppwinrt.git
