@@ -29,9 +29,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)ProjectConfigurations.props" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml" />
     <Page Include="$(MSBuildThisFileDirectory)MessageDialogResultView.xaml" />
     <Page Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.xaml" />
@@ -52,5 +49,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StringStringPair.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MessageDialogExceptionViewModel.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)module.cpp" />
   </ItemGroup>
 </Project>

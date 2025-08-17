@@ -1,9 +1,10 @@
 #define WUP Windows.UI.Popups
+#define WUXD Windows.UI.Xaml.Data
 
 namespace MessageDialogTester
 {
 	[default_interface]
-	runtimeclass MessageDialogResultViewModel
+	runtimeclass MessageDialogResultViewModel : WUXD.INotifyPropertyChanged
 	{
 		WUP.IUICommand Command { get; };
 		UInt32 Index { get; };

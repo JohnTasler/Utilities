@@ -69,6 +69,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MessageDialogResultViewModel.cpp">
       <DependentUpon>MessageDialogResultViewModel.idl</DependentUpon>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)module.cpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MessageDialogExceptionView.h">
       <DependentUpon>MessageDialogExceptionView.xaml</DependentUpon>
     </ClInclude>
@@ -123,9 +124,6 @@
     <Page Include="$(MSBuildThisFileDirectory)MessageDialogResultView.xaml">
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)ProjectConfigurations.props" />
   </ItemGroup>
   <!--Image Assets-->
   <ItemGroup>

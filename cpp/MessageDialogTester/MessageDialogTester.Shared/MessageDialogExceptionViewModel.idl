@@ -1,7 +1,9 @@
+#define WUXD Windows.UI.Xaml.Data
+
 namespace MessageDialogTester
 {
 	[default_interface]
-	runtimeclass MessageDialogExceptionViewModel
+	runtimeclass MessageDialogExceptionViewModel : WUXD.INotifyPropertyChanged
 	{
 		String HResultFormatted { get; };
 		String Message { get; };

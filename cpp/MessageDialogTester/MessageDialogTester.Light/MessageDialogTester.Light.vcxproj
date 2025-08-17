@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props')" />
-	<Import Project="..\MessageDialogTester.Shared\ProjectConfigurations.props" />
+	<Import Project="..\..\modules\tasler-cpp\build\ProjectConfigurations.props" />
 	<PropertyGroup Label="Globals">
 		<ProjectGuid>{D48E65E1-DD6A-4091-A54B-0AF815494388}</ProjectGuid>
 		<ProjectName>MessageDialogTester.Light</ProjectName>
@@ -20,18 +20,16 @@
 	</PropertyGroup>
 	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
 	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+	<Import Project="..\..\modules\tasler-cpp\build\OutputAndIntermediateDirs.props" />
 	<PropertyGroup>
-		<OutDir>$(ProjectDir)\bin\$(Configuration)\$(PlatformTarget)\</OutDir>
-		<IntDir>$(ProjectDir)\obj\$(Configuration)\$(PlatformTarget)\</IntDir>
-		<GeneratedFilesDir>$(IntDir)Generated Files\</GeneratedFilesDir>
-		<ExternalIncludePath>$(ExternalIncludePath);$(ProjectDir)..\..\..\..\mvvm-cppwinrt\opensource</ExternalIncludePath>
+		<ExternalIncludePath>$(ExternalIncludePath);$(ProjectDir)..\..\modules\mvvm-cppwinrt\opensource</ExternalIncludePath>
 		<ExternalIncludePath>$(ExternalIncludePath);$(ProjectDir)..\packages\Microsoft.Windows.ImplementationLibrary.1.0.250325.1\include</ExternalIncludePath>
 	</PropertyGroup>
 	<ImportGroup Label="ExtensionSettings">
 	</ImportGroup>
 	<ImportGroup Label="Shared">
 		<Import Project="..\MessageDialogTester.Shared\MessageDialogTester.Shared.vcxitems" Label="Shared" />
-		<Import Project="..\..\..\..\mvvm-cppwinrt\mvvm-winrt.vcxitems" Label="Shared" />
+		<Import Project="..\..\modules\mvvm-cppwinrt\mvvm-cppwinrt.vcxitems" Label="Shared" />
 	</ImportGroup>
 	<ImportGroup Label="PropertySheets">
 		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -54,9 +52,6 @@
 		</AppxManifest>
 	</ItemGroup>
 	<!-- generated module -->
-	<ItemGroup>
-		<ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-	</ItemGroup>
 	<!-- App -->
 	<ItemGroup>
 		<ApplicationDefinition Include="App.xaml">

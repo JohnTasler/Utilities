@@ -10,7 +10,4 @@
     <None Include="PropertySheet.props" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-  </ItemGroup>
 </Project>
