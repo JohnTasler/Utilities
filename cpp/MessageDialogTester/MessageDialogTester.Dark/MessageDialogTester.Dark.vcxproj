@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props')" />
-	<Import Project="..\..\modules\tasler-cpp\build\ProjectConfigurations.props" />
+	<Import Project="..\..\modules\tasler-cpp\shared\build\ProjectConfigurations.props" />
 	<PropertyGroup Label="Globals">
 		<ProjectGuid>{F958AACB-B5B1-4C45-8511-9F09AF7D0978}</ProjectGuid>
 		<ProjectName>MessageDialogTester.Dark</ProjectName>
@@ -20,7 +20,7 @@
 	</PropertyGroup>
 	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
 	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-	<Import Project="..\..\modules\tasler-cpp\build\OutputAndIntermediateDirs.props" />
+	<Import Project="..\..\modules\tasler-cpp\shared\build\OutputAndIntermediateDirs.props" />
 	<PropertyGroup>
 		<ExternalIncludePath>$(ExternalIncludePath);$(ProjectDir)..\..\modules\mvvm-cppwinrt\opensource</ExternalIncludePath>
 		<ExternalIncludePath>$(ExternalIncludePath);$(ProjectDir)..\packages\Microsoft.Windows.ImplementationLibrary.1.0.250325.1\include</ExternalIncludePath>

@@ -5,7 +5,7 @@
 		<Platform Name="x86" />
 	</Configurations>
 	<Project Path="../modules/mvvm-cppwinrt/mvvm-cppwinrt.vcxitems" Id="119310b5-558d-494e-807f-8a6c520b03a3" />
-	<Project Path="../modules/tasler-cpp/inc/tasler-cpp.vcxitems" Id="746eb6c7-6a55-457a-bcc9-dfcce3094d10" />
+	<Project Path="../modules/tasler-cpp/shared/tasler-cpp.vcxitems" Id="746eb6c7-6a55-457a-bcc9-dfcce3094d10" />
 	<Project Path="MessageDialogTester.Dark/MessageDialogTester.Dark.vcxproj" Id="f958aacb-b5b1-4c45-8511-9f09af7d0978">
 		<Deploy />
 	</Project>
