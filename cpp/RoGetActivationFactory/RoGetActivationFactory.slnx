@@ -1,10 +1,9 @@
 <Solution>
-  <Configurations>
-    <Platform Name="ARM" />
-    <Platform Name="ARM64" />
-    <Platform Name="x64" />
-    <Platform Name="x86" />
-  </Configurations>
-  <Project Path="../modules/tasler-cpp/inc/tasler-cpp.vcxitems" />
-  <Project Path="RoGetActivationFactory.vcxproj" />
+	<Configurations>
+		<Platform Name="ARM64" />
+		<Platform Name="x86" />
+		<Platform Name="x64" />
+	</Configurations>
+	<Project Path="../modules/tasler-cpp/shared/tasler-cpp.vcxitems" Id="746eb6c7-6a55-457a-bcc9-dfcce3094d10" />
+	<Project Path="RoGetActivationFactory.vcxproj" Id="02c59f07-d730-4487-ad8d-aaa3c93ffb73" />
 </Solution>

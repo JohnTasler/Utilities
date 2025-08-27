@@ -27,22 +27,22 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 1 TEXTINCLUDE
 BEGIN
-    "resource.h\0"
+	"resource.h\0"
 END
 
 2 TEXTINCLUDE
 BEGIN
-    "#include ""winres.h""\r\n"
-    "\0"
+	"#include ""winres.h""\r\n"
+	"\0"
 END
 
 3 TEXTINCLUDE
 BEGIN
-    "\r\n"
-    "\0"
+	"\r\n"
+	"\0"
 END
 
-#endif    // APSTUDIO_INVOKED
+#endif	// APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -63,24 +63,24 @@ VS_VERSION_INFO VERSIONINFO
  FILETYPE 0x1L
  FILESUBTYPE 0x0L
 BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "040904b0"
-        BEGIN
-            VALUE "CompanyName", "John Tasler"
-            VALUE "FileDescription", "Allows a WinRT activation factory to be instantiated and inspected"
-            VALUE "FileVersion", "1.0.0.1"
-            VALUE "InternalName", "RoGetActivationFactory.exe"
-            VALUE "LegalCopyright", "Copyright (C) Microsoft Corporation. All rights reserved."
-            VALUE "OriginalFilename", "RoGetAct.exe"
-            VALUE "ProductName", "RoGetActivationFactory.exe"
-            VALUE "ProductVersion", "1.0.0.1"
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x409, 1200
-    END
+	BLOCK "StringFileInfo"
+	BEGIN
+		BLOCK "040904b0"
+		BEGIN
+			VALUE "CompanyName", "John Tasler"
+			VALUE "FileDescription", "Allows a WinRT activation factory to be instantiated and inspected"
+			VALUE "FileVersion", "1.0.0.1"
+			VALUE "InternalName", "RoGetActivationFactory.exe"
+			VALUE "LegalCopyright", "Copyright © John Tasler. All rights reserved."
+			VALUE "OriginalFilename", "RoGetActivationFactory.exe"
+			VALUE "ProductName", "RoGetActivationFactory.exe"
+			VALUE "ProductVersion", "1.0.0.1"
+		END
+	END
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE "Translation", 0x409, 1200
+	END
 END
 
 
@@ -89,11 +89,11 @@ END
 // TEXTFILE
 //
 
-readme.md              ANSI_TEXT                  "readme.md"
-syntax.txt             ANSI_TEXT                  "syntax.txt"
-template.manifest.xml  ANSI_TEXT                  "template.manifest.xml"
+readme.md              ANSI_TEXT         "..\\readme.md"
+syntax.txt             ANSI_TEXT         "syntax.txt"
+template.manifest.xml  ANSI_TEXT         "template.manifest.xml"
 
-#endif    // English (United States) resources
+#endif	// English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -106,5 +106,5 @@ template.manifest.xml  ANSI_TEXT                  "template.manifest.xml"
 
 
 /////////////////////////////////////////////////////////////////////////////
-#endif    // not APSTUDIO_INVOKED
+#endif	// not APSTUDIO_INVOKED
 
