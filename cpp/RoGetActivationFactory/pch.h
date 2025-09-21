@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <windows.h>
 
@@ -8,6 +8,11 @@
 #include <utility>
 #include <vector>
 
+#include <activation.h>
+#include <roapi.h>
+#include <winstring.h>
+
+#include <wil/com.h>
 #include <wil/cppwinrt.h>
 #include <wil/result_macros.h>
 

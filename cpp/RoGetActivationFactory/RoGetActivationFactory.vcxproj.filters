@@ -1,68 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup>
-		<Filter Include="resources">
-			<UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-			<Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-		</Filter>
-		<Filter Include="Source Files">
-			<UniqueIdentifier>{51423b0f-1ec2-404c-9a26-4331240b2a40}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="Header Files">
-			<UniqueIdentifier>{53f84002-0de8-4976-a32b-605cb6ebd409}</UniqueIdentifier>
-		</Filter>
-	</ItemGroup>
-	<ItemGroup>
-		<ClInclude Include="resources\resource.h">
-			<Filter>resources</Filter>
-		</ClInclude>
-		<ClInclude Include="actctx.h">
-			<Filter>Header Files</Filter>
-		</ClInclude>
-		<ClInclude Include="actctx_builder.h">
-			<Filter>Header Files</Filter>
-		</ClInclude>
-		<ClInclude Include="pch.h">
-			<Filter>Header Files</Filter>
-		</ClInclude>
-		<ClInclude Include="Program.h">
-			<Filter>Header Files</Filter>
-		</ClInclude>
-	</ItemGroup>
-	<ItemGroup>
-		<ClCompile Include="actctx_builder.cpp">
-			<Filter>Source Files</Filter>
-		</ClCompile>
-		<ClCompile Include="main.cpp">
-			<Filter>Source Files</Filter>
-		</ClCompile>
-		<ClCompile Include="Program.cpp">
-			<Filter>Source Files</Filter>
-		</ClCompile>
-		<ClCompile Include="pch.cpp">
-			<Filter>Source Files</Filter>
-		</ClCompile>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="PropertySheet.props">
-			<Filter>Source Files</Filter>
-		</None>
-		<None Include="packages.config" />
-	</ItemGroup>
-	<ItemGroup>
-		<Text Include="readme.md" />
-		<Text Include="resources\Syntax.txt">
-			<Filter>resources</Filter>
-		</Text>
-	</ItemGroup>
-	<ItemGroup>
-		<ResourceCompile Include="resources\Resource.rc">
-			<Filter>resources</Filter>
-		</ResourceCompile>
-	</ItemGroup>
-	<ItemGroup>
-		<Xml Include="resources\template.manifest.xml">
-			<Filter>resources</Filter>
-		</Xml>
-	</ItemGroup>
+  <ItemGroup>
+    <Filter Include="resources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{51423b0f-1ec2-404c-9a26-4331240b2a40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{53f84002-0de8-4976-a32b-605cb6ebd409}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Program.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Program.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PropertySheet.props">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.md" />
+    <Text Include="resources\Syntax.txt">
+      <Filter>resources</Filter>
+    </Text>
+    <Text Include="RoGetActivationFactory.exe.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources\Resource.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="resources\template.manifest.xml">
+      <Filter>resources</Filter>
+    </Xml>
+  </ItemGroup>
 </Project>

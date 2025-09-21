@@ -1,10 +1,7 @@
 #include "pch.h"
 #include "Program.h"
 #include "taz/resource_loader.h"
-#include "actctx.h"
-#include "actctx_builder.h"
 
-namespace fs = std::filesystem;
 namespace winrt
 {
 	using namespace winrt::Windows::Foundation;
@@ -56,6 +53,22 @@ int32_t Program::Run()
 			wprintf(L"    %ls\n", FormatInterfaceText(iid).c_str());
 		}
 	}
+	catch (const wil::ResultException& ex)
+	{
+		auto code = ex.GetErrorCode();
+		auto message = ex.what();
+
+		wprintf(
+			L"ERROR     : %ls\n"
+			L"  hresult : 0x%08X (%i)\n"
+			L"  message : %hs\n\n",
+			m_className.data(),
+			static_cast<uint32_t>(code),
+			static_cast<uint32_t>(code),
+			message);
+
+		return code;
+	}
 	catch (const hresult_error& ex)
 	{
 		auto code = ex.code();
@@ -78,39 +91,24 @@ int32_t Program::Run()
 
 winrt::IInspectable Program::LoadActivationFactory()
 {
-	actctx context;
+	wil::unique_hmodule module;
+	module.reset(::LoadLibraryW(m_dllName.data()));
+	THROW_LAST_ERROR_IF_NULL(module);
 
-	// Copy the specified file to a file in the temporary directory
-	wchar_t tempFileName[MAX_PATH + 1]{};
-	THROW_LAST_ERROR_IF(0 == ::GetTempFileNameW(fs::temp_directory_path().c_str(), L"tmp", 0, tempFileName));
-	//fs::path tempDllPath{ fs::path{tempFileName}.replace_extension(L"dll") };
-	//fs::copy_file(m_dllName, tempDllPath);
+	using factory_prototype = PFNGETACTIVATIONFACTORY;
 
-//	fs::path tempManifestPath{ tempDllPath.replace_extension(L"dll.manifest")};
+	auto dllGetActivationFactory =
+		reinterpret_cast<factory_prototype>(GetProcAddress(module.get(), "DllGetActivationFactory"));
+	THROW_HR_IF_NULL(E_NOTIMPL, dllGetActivationFactory);
 
-	actctx_builder builder{ m_dllName, m_className, m_threadingModel};
-	wil::unique_hfile manifestFile{ builder.SaveToFile(tempFileName) };
-	manifestFile.reset();
+	HSTRING_HEADER header{};
+	HSTRING className{};
+	THROW_IF_FAILED(::WindowsCreateStringReference(m_className.data(), static_cast<uint32_t>(m_className.size()), &header, &className));
 
-	ACTCTXW actCtx = {sizeof(actCtx)};
-	actCtx.dwFlags = 0;
-	actCtx.lpSource = tempFileName;
-	unique_actctx activationContext{ ::CreateActCtxW(&actCtx) };
-	THROW_LAST_ERROR_IF(!activationContext);
+	wil::com_ptr_t<::IActivationFactory> factory;
+	THROW_IF_FAILED(dllGetActivationFactory(className, factory.put()));
 
-	ULONG_PTR activationCookie{};
-	THROW_LAST_ERROR_IF(!ActivateActCtx(activationContext.get(), &activationCookie));
-
-	auto deactivateContextScope = wil::scope_exit([=]()
-		{
-			DeactivateActCtx(0, activationCookie);
-		});
-
-	//context = std::move(actctx{ filePath });
-
-	//return { nullptr };
-
-	return get_activation_factory<winrt::IInspectable>(m_className);
+	return { factory.detach(), {} };
 }
 
 void Program::ParseCommandLine()

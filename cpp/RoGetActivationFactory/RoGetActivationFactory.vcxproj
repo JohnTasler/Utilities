@@ -94,14 +94,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="actctx.h" />
-    <ClInclude Include="actctx_builder.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="resources\resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="actctx_builder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
