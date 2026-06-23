@@ -1,15 +1,21 @@
 #include "pch.h"
+#include <conio.h>
+#include <ShlObj_core.h>
+#include <Windows.h>
+#include <array>
+#include <string>
+#include <string_view>
 
 inline constexpr auto c_lineEnd = "\n"sv;
 inline constexpr auto c_prefix = "[admin] "sv;
 
-void WriteOut(HANDLE fileHandle, std::string_view text)
+static void WriteOut(HANDLE fileHandle, std::string_view text)
 {
 	DWORD numberOfBytesWritten{};
 	WriteFile(fileHandle, text.data(), static_cast<DWORD>(text.size()), &numberOfBytesWritten, nullptr);
 }
 
-void WriteLine(HANDLE fileHandle, std::string_view text)
+static void WriteLine(HANDLE fileHandle, std::string_view text)
 {
 	WriteOut(fileHandle, text);
 
@@ -17,7 +23,7 @@ void WriteLine(HANDLE fileHandle, std::string_view text)
 	WriteFile(fileHandle, c_lineEnd.data(), static_cast<DWORD>(c_lineEnd.size()), &numberOfBytesWritten, nullptr);
 }
 
-int run()
+static int run()
 {
 	SetConsoleOutputCP(CP_UTF8);
 
@@ -38,9 +44,7 @@ int run()
 	{
 		DWORD expandedSize = ExpandEnvironmentStringsA(title.data(), nullptr, 0);
 		if (expandedSize == 0)
-		{
 			return GetLastError();
-		}
 
 		expanded.resize(static_cast<size_t>(expandedSize));
 		ExpandEnvironmentStringsA(title.data(), expanded.data(), expandedSize);
