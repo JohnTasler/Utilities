@@ -1,4 +1,4 @@
-﻿namespace ZoomIn
+namespace ZoomIn
 {
 	using System;
 	using System.Globalization;
@@ -20,7 +20,7 @@
 				var alphaString = parameter as string;
 				if (alphaString != null && double.TryParse(alphaString, NumberStyles.Float, culture, out alphaDouble))
 				{
-					alphaDouble = Math.Min(Math.Max(alphaDouble, 0.0), 1.0);
+					alphaDouble = Math.Clamp(alphaDouble, 0.0, 1.0);
 					alpha = (int)(alpha * alphaDouble);
 				}
 

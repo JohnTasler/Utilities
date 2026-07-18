@@ -1,4 +1,4 @@
-﻿namespace ZoomIn.ViewModel
+namespace ZoomIn.ViewModel
 {
 	using System;
 	using System.ComponentModel;
@@ -91,6 +91,8 @@
 						Debug.WriteLine("{3}: ScreenImageViewModel.Refresh: BitBlt failed: {0} isHdcSourceValid={1} isHdcScreenValid={2}",
 							e.Message, isHdcSourceValid, isHdcScreenValid, invalidHandleCount++);
 					}
+					#else // DEBUG
+						_ = e; // Avoid unused variable warning
 					#endif // DEBUG
 
 					// Ignore (until it doesn't fail)
